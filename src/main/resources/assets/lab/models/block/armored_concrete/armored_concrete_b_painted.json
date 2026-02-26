@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "lab:block/armored_concrete/armored_concrete_b",
+    "up": "lab:block/armored_concrete/armored_concrete_b",
+    "down": "lab:block/armored_concrete/armored_concrete_b",
+    "east": "lab:block/armored_concrete/armored_concrete_b_painted",
+    "north": "lab:block/armored_concrete/armored_concrete_b_painted",
+    "south": "lab:block/armored_concrete/armored_concrete_b_painted",
+    "west": "lab:block/armored_concrete/armored_concrete_b_painted"
+  }
+}

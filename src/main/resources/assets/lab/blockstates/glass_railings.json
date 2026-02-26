@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=north": {
+      "model":  "lab:block/decorations/glass_railings"
+    },
+    "facing=west": {
+      "model":  "lab:block/decorations/glass_railings","y": 90
+    },
+    "facing=south": {
+      "model":  "lab:block/decorations/glass_railings","y": 180
+    },
+    "facing=east": {
+      "model":  "lab:block/decorations/glass_railings","y": 270
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"1": "lab:block/barrier_gate_connector",
+		"particle": "lab:block/barrier_gate_emitter"
+	},
+	"elements": [
+		{
+			"from": [7.5, 0, 8],
+			"to": [8.5, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 11]},
+			"faces": {
+				"north": {"uv": [14, 8, 14.5, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 7, 16], "texture": "#1"},
+				"south": {"uv": [14, 8, 14.5, 16], "texture": "#1"},
+				"west": {"uv": [6, 0, 13, 16], "texture": "#1"},
+				"up": {"uv": [14.5, 16, 14, 9.5], "texture": "#1"},
+				"down": {"uv": [14.5, 9.5, 14, 16], "texture": "#1"}
+			}
+		},
+		{
+			"from": [7.5, 0, 0],
+			"to": [8.5, 16, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 3]},
+			"faces": {
+				"north": {"uv": [14, 8, 14.5, 16], "texture": "#1"},
+				"east": {"uv": [7, 0, 13, 16], "texture": "#1"},
+				"south": {"uv": [14, 8, 14.5, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 7, 16], "texture": "#1"},
+				"up": {"uv": [14.5, 16, 14, 9.5], "texture": "#1"},
+				"down": {"uv": [14.5, 9.5, 14, 16], "texture": "#1"}
+			}
+		}
+	]
+}

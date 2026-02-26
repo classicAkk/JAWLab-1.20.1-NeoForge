@@ -1,0 +1,61 @@
+{
+  "variants": {
+    "face=ceiling,facing=east": {
+      "model": "lab:block/cable",
+      "x": 180,
+      "y": 270
+    },
+    "face=ceiling,facing=north": {
+      "model": "lab:block/cable",
+      "x": 180,
+      "y": 180
+    },
+    "face=ceiling,facing=south": {
+      "model": "lab:block/cable",
+      "x": 180
+    },
+    "face=ceiling,facing=west": {
+      "model": "lab:block/cable",
+      "x": 180,
+      "y": 90
+    },
+    "face=floor,facing=east": {
+      "model": "lab:block/cable",
+      "y": 90
+    },
+    "face=floor,facing=north": {
+      "model": "lab:block/cable"
+    },
+    "face=floor,facing=south": {
+      "model": "lab:block/cable",
+      "y": 180
+    },
+    "face=floor,facing=west": {
+      "model": "lab:block/cable",
+      "y": 270
+    },
+    "face=wall,facing=east": {
+      "model": "lab:block/cable",
+      "uvlock": false,
+      "x": 90,
+      "y": 90
+    },
+    "face=wall,facing=north": {
+      "model": "lab:block/cable",
+      "uvlock": false,
+      "x": 90
+    },
+    "face=wall,facing=south": {
+      "model": "lab:block/cable",
+      "uvlock": false,
+      "x": 90,
+      "y": 180
+    },
+    "face=wall,facing=west": {
+      "model": "lab:block/cable",
+      "uvlock": false,
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "item.lab.card1": "Key-card 1",
+  "item.lab.card2": "Key-card 2",
+  "item.lab.card3": "Key-card 3",
+  "item.lab.card4": "Key-card 4",
+  "item.lab.card5": "Key-card 5",
+
+  "item.lab.s_delta": "Sector Delta",
+  "item.lab.s_iota": "Sector Iota",
+  "item.lab.s_kappa": "Sector Kappa",
+  "item.lab.s_psi": "Sector Psi",
+  "item.lab.s_tau": "Sector Tau",
+
+  "block.lab.crowbar_block": "Crowbar (Block)",
+  "block.lab.duct_tape_block": "Duct Tape (Block)",
+  "block.lab.fuse_block": "Fuse (Block)",
+  "block.lab.green_stamp_block": "Green Stamp (Block)",
+  "block.lab.red_stamp_block": "Red Stamp (Block)",
+  "block.lab.card1_block": "Key-card 1 (Block)",
+  "block.lab.card2_block": "Key-card 2 (Block)",
+  "block.lab.card3_block": "Key-card 3 (Block)",
+  "block.lab.card4_block": "Key-card 4 (Block)",
+  "block.lab.card5_block": "Key-card 5 (Block)",
+
+  "block.lab.led_lamp": "LED Lamp",
+  "block.lab.grating": "Grating",
+  "block.lab.sheet": "Sheet",
+  "block.lab.sheet_red": "Sheet Red",
+  "block.lab.sheet_green": "Sheet Green",
+
+  "item.lab.crowbar": "Crowbar",
+  "item.lab.duct_tape": "Duct Tape",
+  "item.lab.fuse": "Fuse",
+  "item.lab.green_stamp": "Green Stamp",
+  "item.lab.red_stamp": "Red Stamp",
+
+  "item.lab.JAW_BRACELET": "JAW Bracelet",
+  "item.lab.CSG_HELMET": "CSG Helmet",
+  "item.lab.CSG_VEST": "CSG Vest",
+  "item.lab.CSG_LEGS": "CSG Legs",
+
+  "block.lab.armored_concrete": "Armored Concrete",
+  "block.lab.armored_concrete_g": "Armored Concrete G",
+  "block.lab.armored_concrete_b": "Armored Concrete B",
+  "block.lab.armored_concrete_painted": "Armored Concrete With JAW",
+  "block.lab.armored_concrete_g_painted": "Armored Concrete G With JAW",
+  "block.lab.armored_concrete_b_painted": "Armored Concrete B With JAW",
+
+  "block.lab.spec_block_up": "Spec Up",
+  "block.lab.spec_block_down": "Spec Down",
+
+  "block.lab.supplies_block_up": "Supplies Up",
+  "block.lab.supplies_block_down": "Supplies down",
+
+  "block.lab.g_zone_block_up": "G-Zone Up",
+  "block.lab.g_zone_block_down": "G-Zone Down",
+
+  "block.lab.reactor_zone_block_up": "Reactor Zone Up",
+  "block.lab.reactor_zone_block_down": "Reactor Zone Down",
+
+  "block.lab.danger_zone_block_up": "Danger Zone Up",
+  "block.lab.danger_zone_block_down": "Danger Zone Down",
+
+  "block.lab.exit_block_up": "Exit Zone Up",
+  "block.lab.exit_block_down": "Exit Zone Down",
+
+  "block.lab.elevator_inside": "Elevator Inside Button",
+  "block.lab.elevator_outside": "Elevator Outside Button",
+
+
+  "block.lab.keydoor_down_closed": "Closed Key-Door (Bottom Part)",
+  "block.lab.keydoor_down_opened": "Opened Key-Door (Bottom Part)",
+  "block.lab.keydoor_up_closed": "Closed Key-Door (Upper Part)",
+  "block.lab.keydoor_up_opened": "Opened Key-Door (Upper Part)",
+  "block.lab.keydoor_up_error": "[Error] Key-Door (Upper Part)",
+
+
+  "tooltip.lab.key_card1.tooltip":"Key-card lvl 1 - Specialists",
+  "tooltip.lab.key_card2.tooltip":"Key-card lvl 2 - Storage Units",
+  "tooltip.lab.key_card3.tooltip":"Key-card lvl 3 - G-Zone Access",
+  "tooltip.lab.key_card4.tooltip":"Key-card lvl 4 - Danger & Reactor Zones",
+  "tooltip.lab.key_card5.tooltip":"Key-card lvl 5 - Trusted Employee",
+
+  "tooltip.lab.wire_cutters.tooltip":"Cut it out!",
+  "tooltip.lab.crowbar.tooltip":"No time for waste! We got work to do!",
+  "tooltip.lab.fuse.tooltip":"Can save your equipment",
+  "tooltip.lab.duct_tape.tooltip":"if you couldn't fix something with duct tape, then you didn't take enough duct tape",
+
+  "creativetab.lab_items_tab": "classic_akk Laboratory Items",
+  "creativetab.lab_blocks_tab": "classic_akk Laboratory Blocks",
+  "creativetab.lab_door_blocks_tab": "classic_akk Laboratory Door Blocks"
+}

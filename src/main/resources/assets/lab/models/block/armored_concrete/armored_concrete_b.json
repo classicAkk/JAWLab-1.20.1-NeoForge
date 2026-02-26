@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "lab:block/armored_concrete/armored_concrete_b"
+  }
+}

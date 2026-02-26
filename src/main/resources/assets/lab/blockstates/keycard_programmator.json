@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lab:block/keycards/keycard_programmator"
+    }
+  }
+}

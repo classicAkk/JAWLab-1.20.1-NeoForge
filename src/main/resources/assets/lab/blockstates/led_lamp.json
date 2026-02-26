@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model":  "lab:block/pickable/led_lamp"}
+  }
+}

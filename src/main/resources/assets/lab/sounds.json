@@ -1,0 +1,974 @@
+{
+  "door_error": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:door_error",
+        "stream": false
+      }
+    ]
+  },
+  "door_tick": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:door_tick",
+        "stream": false
+      }
+    ]
+  },
+  "door_open": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:door_open",
+        "stream": false
+      }
+    ]
+  },
+  "glass_crash": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "lab:glass_crash",
+        "stream": false
+      }
+    ]
+  },
+  "throw": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "lab:throw",
+        "stream": false
+      }
+    ]
+  },
+  "amb_1": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_1",
+        "stream": false
+      }
+    ]
+  },
+  "amb_2": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_2",
+        "stream": false
+      }
+    ]
+  },
+  "amb_10": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_10",
+        "stream": false
+      }
+    ]
+  },
+  "amb_11": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_11",
+        "stream": false
+      }
+    ]
+  },
+  "amb_12": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_12",
+        "stream": false
+      }
+    ]
+  },
+  "amb_13": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_13",
+        "stream": false
+      }
+    ]
+  },
+  "amb_14": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_14",
+        "stream": false
+      }
+    ]
+  },
+  "amb_15": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_15",
+        "stream": false
+      }
+    ]
+  },
+  "amb_16": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_16",
+        "stream": false
+      }
+    ]
+  },
+  "amb_17": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_17",
+        "stream": false
+      }
+    ]
+  },
+  "amb_18": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_18",
+        "stream": false
+      }
+    ]
+  },
+  "amb_19": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_19",
+        "stream": false
+      }
+    ]
+  },
+  "amb_20": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_20",
+        "stream": false
+      }
+    ]
+  },
+  "amb_21": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_21",
+        "stream": false
+      }
+    ]
+  },
+  "amb_22": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_22",
+        "stream": false
+      }
+    ]
+  },
+  "amb_23": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_23",
+        "stream": false
+      }
+    ]
+  },
+  "amb_24": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_24",
+        "stream": false
+      }
+    ]
+  },
+  "amb_25": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_25",
+        "stream": false
+      }
+    ]
+  },
+  "amb_26": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_26",
+        "stream": false
+      }
+    ]
+  },
+  "amb_27": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_27",
+        "stream": false
+      }
+    ]
+  },
+  "amb_28": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_28",
+        "stream": false
+      }
+    ]
+  },
+  "amb_29": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_29",
+        "stream": false
+      }
+    ]
+  },
+  "amb_3": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_3",
+        "stream": false
+      }
+    ]
+  },
+  "amb_30": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_30",
+        "stream": false
+      }
+    ]
+  },
+  "amb_31": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_31",
+        "stream": false
+      }
+    ]
+  },
+  "amb_4": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_4",
+        "stream": false
+      }
+    ]
+  },
+  "amb_5": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_5",
+        "stream": false
+      }
+    ]
+  },
+  "amb_6": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_6",
+        "stream": false
+      }
+    ]
+  },
+  "amb_7": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_7",
+        "stream": false
+      }
+    ]
+  },
+  "amb_8": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_8",
+        "stream": false
+      }
+    ]
+  },
+  "amb_9": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:amb_9",
+        "stream": false
+      }
+    ]
+  },
+  "electric_room": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:electric_room",
+        "stream": false
+      }
+    ]
+  },
+  "electric_open": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:electric_open",
+        "stream": false
+      }
+    ]
+  },
+  "electric_duct_tape": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:electric_duct_tape",
+        "stream": false
+      }
+    ]
+  },
+  "electric_fuse": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:electric_fuse",
+        "stream": false
+      }
+    ]
+  },
+  "electric_fuse1": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:electric_fuse1",
+        "stream": false
+      }
+    ]
+  },
+  "error_tune": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:error_tune",
+        "stream": false
+      }
+    ]
+  },
+  "item_crowbar_pickup": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:item_crowbar_pickup",
+        "stream": false
+      }
+    ]
+  },
+  "item_key_pickup": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:item_key_pickup",
+        "stream": false
+      }
+    ]
+  },
+  "item_pickup": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:item_pickup",
+        "stream": false
+      }
+    ]
+  },
+  "panel_key": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:key_insert",
+        "stream": false
+      }
+    ]
+  },
+  "key_sabotage": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:key_sabotage",
+        "stream": false
+      }
+    ]
+  },
+  "reactor_room_fine": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:reactor_room",
+        "stream": false
+      }
+    ]
+  },
+  "reactor_room_fail": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:reactor_room_fail",
+        "stream": false
+      }
+    ]
+  },
+  "reactor_explode": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:reactor_explode",
+        "stream": false
+      }
+    ]
+  },
+  "int_electric_on": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_electric_on",
+        "stream": false
+      }
+    ]
+  },
+  "int_lift_on": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_lift_on",
+        "stream": false
+      }
+    ]
+  },
+  "int_monster_death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_monster_death",
+        "stream": false
+      }
+    ]
+  },
+  "int_reactor_final": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_reactor_final",
+        "stream": false
+      }
+    ]
+  },
+  "int_reactor_on": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_reactor_on",
+        "stream": false
+      }
+    ]
+  },
+  "int_reactor1": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_reactor1",
+        "stream": false
+      }
+    ]
+  },
+  "int_reactor2": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_reactor2",
+        "stream": false
+      }
+    ]
+  },
+  "int_reactor3": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_reactor3",
+        "stream": false
+      }
+    ]
+  },
+  "int_reactor4": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_reactor4",
+        "stream": false
+      }
+    ]
+  },
+  "int_scientist_death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_scientist_death",
+        "stream": false
+      }
+    ]
+  },
+  "int_train_on": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_train_on",
+        "stream": false
+      }
+    ]
+  },
+  "int_ster_fiftly_min": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_ster_fiftly_min",
+        "stream": false
+      }
+    ]
+  },
+  "int_ster_five_min": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_ster_five_min",
+        "stream": false
+      }
+    ]
+  },
+  "int_ster_one_min": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_ster_one_min",
+        "stream": false
+      }
+    ]
+  },
+  "int_ster_thirty_sec_counter": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_ster_thirty_sec_counter",
+        "stream": false
+      }
+    ]
+  },
+  "int_ster_thirty_sec": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_ster_thirty_secr",
+        "stream": false
+      }
+    ]
+  },
+  "csg_helicopter": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:scg_helicopter",
+        "stream": false
+      }
+    ]
+  },
+  "elevator_bell": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:elevator_bell",
+        "stream": false
+      }
+    ]
+  },
+  "lift_ride": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:lift_ride",
+        "stream": false
+      }
+    ]
+  },
+  "door_close": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:door_close",
+        "stream": false
+      }
+    ]
+  },
+  "exit_elevator": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:exit_elevator",
+        "stream": false
+      }
+    ]
+  },
+  "int_csg_death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_scg_death",
+        "stream": false
+      }
+    ]
+  },
+  "int_scg_arrive": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:int_scg_arrive",
+        "stream": false
+      }
+    ]
+  },
+  "turbine_loop": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:turbine_loop",
+        "stream": false
+      }
+    ]
+  },
+  "paper": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:paper",
+        "stream": false
+      }
+    ]
+  },
+  "panel_on": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:panel_on.panel_on",
+        "stream": false
+      }
+    ]
+  },
+  "train_go": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:train_go",
+        "stream": false
+      }
+    ]
+  },
+  "reactor_overheat": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:reactor_room_overheat",
+        "stream": false
+      }
+    ]
+  },
+  "alarm": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:alarm",
+        "stream": false
+      }
+    ]
+  },
+  "shock": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:shock",
+        "stream": false
+      }
+    ]
+  },
+  "monster_snarl1": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:monster_snarl1",
+        "stream": false
+      }
+    ]
+  },
+  "monster_snarl2": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:mosnter_snarl2",
+        "stream": false
+      }
+    ]
+  },
+  "monster_snarl3": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:mosnter_snarl3",
+        "stream": false
+      }
+    ]
+  },
+  "monster_hurt1": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:monster_hurt1",
+        "stream": false
+      }
+    ]
+  },
+  "monster_hurt2": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:monster_hurt2",
+        "stream": false
+      }
+    ]
+  },
+  "rumble_loop": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:rumble_loop",
+        "stream": false
+      }
+    ]
+  },
+  "rumble_use": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:rumble_use",
+        "stream": false
+      }
+    ]
+  },
+  "msr_attack1": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:monster_attack1",
+        "stream": false
+      }
+    ]
+  },
+  "msr_attack2": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:monster_attack2",
+        "stream": false
+      }
+    ]
+  },
+  "lights_off": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:lights_off",
+        "stream": false
+      }
+    ]
+  },
+  "lights_on": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:lights_on",
+        "stream": false
+      }
+    ]
+  },
+  "pre_on": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:pre_on",
+        "stream": false
+      }
+    ]
+  },
+  "tick": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:tick",
+        "stream": false
+      }
+    ]
+  },
+  "void_call": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:void_call",
+        "stream": false
+      }
+    ]
+  },
+  "stamp": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "lab:stamp",
+        "stream": false
+      }
+    ]
+  },
+  "camera_shot": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:camera_shot",
+        "stream": false
+      }
+    ]
+  },
+  "camera_shot2": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lab:camera_shot2",
+        "stream": false
+      }
+    ]
+  },
+  "amb.all": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "lab:amb_1",
+        "stream": true
+      },      {
+        "name": "lab:amb_2",
+        "stream": true
+      },      {
+        "name": "lab:amb_3",
+        "stream": true
+      },      {
+        "name": "lab:amb_4",
+        "stream": true
+      },      {
+        "name": "lab:amb_5",
+        "stream": true
+      },      {
+        "name": "lab:amb_6",
+        "stream": true
+      },      {
+        "name": "lab:amb_7",
+        "stream": true
+      },      {
+        "name": "lab:amb_8",
+        "stream": true
+      },      {
+        "name": "lab:amb_9",
+        "stream": true
+      },      {
+        "name": "lab:amb_10",
+        "stream": true
+      },      {
+        "name": "lab:amb_11",
+        "stream": true
+      },      {
+        "name": "lab:amb_12",
+        "stream": true
+      },      {
+        "name": "lab:amb_13",
+        "stream": true
+      },      {
+        "name": "lab:amb_14",
+        "stream": true
+      },      {
+        "name": "lab:amb_15",
+        "stream": true
+      },      {
+        "name": "lab:amb_16",
+        "stream": true
+      },      {
+        "name": "lab:amb_17",
+        "stream": true
+      },      {
+        "name": "lab:amb_18",
+        "stream": true
+      },      {
+        "name": "lab:amb_19",
+        "stream": true
+      },      {
+        "name": "lab:amb_20",
+        "stream": true
+      },      {
+        "name": "lab:amb_21",
+        "stream": true
+      },      {
+        "name": "lab:amb_22",
+        "stream": true
+      },      {
+        "name": "lab:amb_23",
+        "stream": true
+      },      {
+        "name": "lab:amb_24",
+        "stream": true
+      },      {
+        "name": "lab:amb_25",
+        "stream": true
+      },      {
+        "name": "lab:amb_26",
+        "stream": true
+      },      {
+        "name": "lab:amb_27",
+        "stream": true
+      },      {
+        "name": "lab:amb_28",
+        "stream": true
+      },      {
+        "name": "lab:amb_29",
+        "stream": true
+      },      {
+        "name": "lab:amb_30",
+        "stream": true
+      },      {
+        "name": "lab:amb_31",
+        "stream": true
+      }
+    ]
+  }
+}

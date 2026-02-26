@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lab:block/zones/r/r_zone_block_down"
+    }
+  }
+}

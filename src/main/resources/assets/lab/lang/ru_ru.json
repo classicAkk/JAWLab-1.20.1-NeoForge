@@ -1,0 +1,95 @@
+{
+  "item.lab.card1": "Ключ-карта 1",
+  "item.lab.card2": "Ключ-карта 2",
+  "item.lab.card3": "Ключ-карта 3",
+  "item.lab.card4": "Ключ-карта 4",
+  "item.lab.card5": "Ключ-карта 5",
+
+  "item.lab.s_delta": "Сектор Дельта",
+  "item.lab.s_iota": "Сектор Йота",
+  "item.lab.s_kappa": "Сектор Каппа",
+  "item.lab.s_psi": "Сектор Пси",
+  "item.lab.s_tau": "Сектор Тау",
+
+  "block.lab.crowbar_block": "Монтировка (Блок)",
+  "block.lab.duct_tape_block": "Изолента (Блок)",
+  "block.lab.fuse_block": "Предохранитель (Блок)",
+  "block.lab.green_stamp_block": "Зелёный штамп (Блок)",
+  "block.lab.red_stamp_block": "Красный штамп (Блок)",
+
+  "block.lab.led_lamp": "Светодиодная лампа",
+  "block.lab.grating": "Решётка",
+  "block.lab.sheet": "Лист бумаги",
+  "block.lab.sheet_red": "Лист бумаги (отказ)",
+  "block.lab.sheet_green": "Лист бумаги (подтверждение)",
+
+  "item.lab.crowbar": "Монтировка",
+  "item.lab.duct_tape": "Изолента",
+  "item.lab.fuse": "Предохранитель",
+  "item.lab.green_stamp": "Зелёный штамп",
+  "item.lab.red_stamp": "Красный штамп",
+
+  "item.lab.JAW_BRACELET": "Браслет специалиста JAW",
+  "item.lab.CSG_HELMET": "Шлем CSG",
+  "item.lab.CSG_VEST": "Нагрудник CSG",
+  "item.lab.CSG_LEGS": "Защита ног CSG",
+
+  "block.lab.armored_concrete": "Железобетон",
+  "block.lab.armored_concrete_g": "Железобетон G",
+  "block.lab.armored_concrete_b": "Железобетон B",
+  "block.lab.armored_concrete_painted": "Железобетон с JAW",
+  "block.lab.armored_concrete_g_painted": "Железобетон G с JAW",
+  "block.lab.armored_concrete_b_painted": "Железобетон B с JAW",
+
+  "block.lab.spec_block_up": "Специалисты (верх)",
+  "block.lab.spec_block_down": "Специалисты (низ)",
+
+  "block.lab.supplies_block_up": "Припасы (верх)",
+  "block.lab.supplies_block_down": "Припасы (низ)",
+
+  "block.lab.g_zone_block_up": "G-зона (верх)",
+  "block.lab.g_zone_block_down": "G-зона (низ)",
+
+  "block.lab.reactor_zone_block_up": "Зона реактора (верх)",
+  "block.lab.reactor_zone_block_down": "Зона реактора (низ)",
+
+  "block.lab.danger_zone_block_up": "Опасная зона (верх)",
+  "block.lab.danger_zone_block_down": "Опасная зона (низ)",
+
+  "block.lab.exit_block_up": "Зона выхода (верх)",
+  "block.lab.exit_block_down": "Зона выхода (низ)",
+
+  "block.lab.elevator_inside": "Внутренная Кнопка вызова лифта",
+  "block.lab.elevator_outside": "Внешняя Кнопка вызова лифта",
+
+
+  "block.lab.door1_up_close": "Lvl1 Лабораторная дверь (север/юг)",
+  "block.lab.door2_up_close": "Lvl2 Лабораторная дверь (север/юг)",
+  "block.lab.door3_up_close": "Lvl3 Лабораторная дверь (север/юг)",
+  "block.lab.door4_up_close": "Lvl4 Лабораторная дверь (север/юг)",
+  "block.lab.door5_up_close": "Lvl5 Лабораторная дверь (север/юг)",
+  "block.lab.door_elevator_close": "Лабораторная дверь лифта (север/юг)",
+
+  "block.lab.door1_up_close_south": "Lvl1 Лабораторная дверь (восток/запад)",
+  "block.lab.door2_up_close_south": "Lvl2 Лабораторная дверь (восток/запад)",
+  "block.lab.door3_up_close_south": "Lvl3 Лабораторная дверь (восток/запад)",
+  "block.lab.door4_up_close_south": "Lvl4 Лабораторная дверь (восток/запад)",
+  "block.lab.door5_up_close_south": "Lvl5 Лабораторная дверь (восток/запад)",
+  "block.lab.door_elevator_close_south": "Лабораторная дверь лифта (восток/запад)",
+
+
+  "tooltip.lab.KeyCard1.tooltip":"Ключ-карта уровня 1 - Специалисты",
+  "tooltip.lab.KeyCard2.tooltip":"Ключ-карта уровня 2 - Доступ к хранилищам",
+  "tooltip.lab.KeyCard3.tooltip":"Ключ-карта уровня 3 - Доступ к G-Зоне",
+  "tooltip.lab.KeyCard4.tooltip":"Ключ-карта уровня 4 - Доступ к Опасной и Зоне реактора",
+  "tooltip.lab.KeyCard5.tooltip":"Ключ-карта уровня 5 - Высшее руководство",
+
+  "tooltip.lab.WireCutters.tooltip":"Кусь :3",
+  "tooltip.lab.Crowbar.tooltip":"No time for waste, We got work to do",
+  "tooltip.lab.Fuse.tooltip":"Может спасти вашу электросеть",
+  "tooltip.lab.DuctTape.tooltip":"Если вам не удалось починить что-то с помощью изоленты, значит вы взяли мало изоленты",
+
+  "creativetab.lab_items_tab": "Предметы classic_akk Laboratory",
+  "creativetab.lab_blocks_tab": "Блоки classic_akk Laboratory",
+  "creativetab.lab_door_blocks_tab": "Блоки дверей classic_akk Laboratory"
+}
