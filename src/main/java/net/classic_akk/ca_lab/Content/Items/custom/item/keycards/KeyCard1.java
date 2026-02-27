@@ -30,10 +30,10 @@ public class KeyCard1 extends Item {
             tag.putString("cNetwork", "none");
         }
         if (!tag.contains("cOwner")) {
-            tag.putString("cOwner", player.getName().getString());
+            tag.putString("cOwner", "none");
         }
         if (!tag.contains("cUUID")) {
-            tag.putString("cUUID", player.getUUID().toString());
+            tag.putString("cUUID", "none");
         }
 
         return InteractionResultHolder.success(stack);

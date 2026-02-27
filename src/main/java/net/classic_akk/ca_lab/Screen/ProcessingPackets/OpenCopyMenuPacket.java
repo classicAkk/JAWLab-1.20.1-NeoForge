@@ -1,6 +1,6 @@
-package net.classic_akk.ca_lab.Screen.OpenScreen;
+package net.classic_akk.ca_lab.Screen.ProcessingPackets;
 
-import net.classic_akk.ca_lab.Screen.KCPMain.KeycardProgrammatorMainMenu;
+import net.classic_akk.ca_lab.Screen.KCPCopy.KeycardProgrammatorCopyMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -17,23 +17,23 @@ import net.minecraftforge.network.NetworkHooks;
 
 import java.util.function.Supplier;
 
-public class OpenMainMenuPacket {
+public class OpenCopyMenuPacket {
 
     private final BlockPos pos;
 
-    public OpenMainMenuPacket(BlockPos pos) {
+    public OpenCopyMenuPacket(BlockPos pos) {
         this.pos = pos;
     }
 
-    public static void encode(OpenMainMenuPacket msg, FriendlyByteBuf buf) {
+    public static void encode(OpenCopyMenuPacket msg, FriendlyByteBuf buf) {
         buf.writeBlockPos(msg.pos);
     }
 
-    public static OpenMainMenuPacket decode(FriendlyByteBuf buf) {
-        return new OpenMainMenuPacket(buf.readBlockPos());
+    public static OpenCopyMenuPacket decode(FriendlyByteBuf buf) {
+        return new OpenCopyMenuPacket(buf.readBlockPos());
     }
 
-    public static void handle(OpenMainMenuPacket msg, Supplier<NetworkEvent.Context> ctx) {
+    public static void handle(OpenCopyMenuPacket msg, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
             if (player == null) return;
@@ -47,12 +47,12 @@ public class OpenMainMenuPacket {
 
                 @Override
                 public Component getDisplayName() {
-                    return Component.literal("KCP Main");
+                    return Component.literal("KCP Copy");
                 }
 
                 @Override
                 public AbstractContainerMenu createMenu(int pContainerId, Inventory inv, Player p) {
-                    return new KeycardProgrammatorMainMenu(pContainerId, inv, entity, data);
+                    return new KeycardProgrammatorCopyMenu(pContainerId, inv, entity, data);
                 }
             }, msg.pos);
 

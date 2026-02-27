@@ -1,4 +1,4 @@
-package net.classic_akk.ca_lab.Screen.OpenScreen;
+package net.classic_akk.ca_lab.Screen.ProcessingPackets;
 
 import net.classic_akk.ca_lab.Screen.KCPNetwork.KeycardProgrammatorNetworkMenu;
 import net.minecraft.core.BlockPos;

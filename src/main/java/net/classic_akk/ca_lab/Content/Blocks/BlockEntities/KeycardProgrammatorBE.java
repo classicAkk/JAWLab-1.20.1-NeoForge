@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class KeycardProgrammatorBE extends BlockEntity implements MenuProvider {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(1);
+    private final ItemStackHandler itemHandler = new ItemStackHandler(2);
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
@@ -79,9 +79,6 @@ public class KeycardProgrammatorBE extends BlockEntity implements MenuProvider {
         };
     }
 
-
-
-    /** DO NOT FORGET TO SET */
     @Override
     public Component getDisplayName() {
         return Component.translatable("KCP Network");

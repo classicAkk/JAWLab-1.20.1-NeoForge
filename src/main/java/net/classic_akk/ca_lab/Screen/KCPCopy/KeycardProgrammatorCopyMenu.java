@@ -25,7 +25,7 @@ public class KeycardProgrammatorCopyMenu extends AbstractContainerMenu {
     public KeycardProgrammatorCopyMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(LabMenuTypes.KCP_COPY.get(), pContainerId);
 
-        checkContainerSize(inv, 1);
+        checkContainerSize(inv, 2);
         blockEntity = ((KeycardProgrammatorBE) entity);
         this.level = inv.player.level();
         this.data = data;
@@ -35,6 +35,7 @@ public class KeycardProgrammatorCopyMenu extends AbstractContainerMenu {
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
             this.addSlot(new SlotItemHandler(iItemHandler, 0, 8, 47));
+            this.addSlot(new SlotItemHandler(iItemHandler, 1, 37, 47));
         });
 
         addDataSlots(data);
