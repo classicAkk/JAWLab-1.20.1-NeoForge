@@ -1,9 +1,10 @@
 package net.classic_akk.ca_lab.Util;
 
 import net.classic_akk.ca_lab.Lab;
-import net.classic_akk.ca_lab.Screen.OpenScreen.OpenCopyMenuPacket;
-import net.classic_akk.ca_lab.Screen.OpenScreen.OpenMainMenuPacket;
-import net.classic_akk.ca_lab.Screen.OpenScreen.OpenNetworkMenuPacket;
+import net.classic_akk.ca_lab.Screen.ProcessingPackets.OpenCopyMenuPacket;
+import net.classic_akk.ca_lab.Screen.ProcessingPackets.OpenMainMenuPacket;
+import net.classic_akk.ca_lab.Screen.ProcessingPackets.OpenNetworkMenuPacket;
+import net.classic_akk.ca_lab.Screen.ProcessingPackets.ProcessingPacket;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
@@ -41,7 +42,7 @@ public class LabPackets {
                 OpenMainMenuPacket::encode,
                 OpenMainMenuPacket::decode,
                 OpenMainMenuPacket::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER) // клиент → сервер
+                Optional.of(NetworkDirection.PLAY_TO_SERVER)
         );
         INSTANCE.registerMessage(
                 nextID(),
@@ -49,7 +50,15 @@ public class LabPackets {
                 OpenNetworkMenuPacket::encode,
                 OpenNetworkMenuPacket::decode,
                 OpenNetworkMenuPacket::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER) // клиент → сервер
+                Optional.of(NetworkDirection.PLAY_TO_SERVER)
+        );
+        INSTANCE.registerMessage(
+                nextID(),
+                ProcessingPacket.class,
+                ProcessingPacket::encode,
+                ProcessingPacket::decode,
+                ProcessingPacket::handle,
+                Optional.of(NetworkDirection.PLAY_TO_SERVER)
         );
     }
 

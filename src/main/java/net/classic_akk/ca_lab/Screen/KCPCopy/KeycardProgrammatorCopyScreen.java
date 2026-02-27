@@ -1,22 +1,24 @@
 package net.classic_akk.ca_lab.Screen.KCPCopy;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.classic_akk.ca_lab.Content.Blocks.BlockEntities.Util.KeycardInteractions;
 import net.classic_akk.ca_lab.Lab;
 import net.classic_akk.ca_lab.Screen.Elements.GuiButton;
-import net.classic_akk.ca_lab.Screen.OpenScreen.OpenCopyMenuPacket;
-import net.classic_akk.ca_lab.Screen.OpenScreen.OpenMainMenuPacket;
-import net.classic_akk.ca_lab.Screen.OpenScreen.OpenNetworkMenuPacket;
+import net.classic_akk.ca_lab.Screen.ProcessingPackets.OpenMainMenuPacket;
+import net.classic_akk.ca_lab.Screen.ProcessingPackets.OpenNetworkMenuPacket;
 import net.classic_akk.ca_lab.Util.LabPackets;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 
 public class KeycardProgrammatorCopyScreen extends AbstractContainerScreen<KeycardProgrammatorCopyMenu> {
+    ItemStack stackZero = this.menu.getSlot(0).getItem();
+    ItemStack stackOne = this.menu.getSlot(1).getItem();
     BlockPos pos = menu.blockEntity.getBlockPos();
 
     private final ResourceLocation TEXTURE =
@@ -57,7 +59,9 @@ public class KeycardProgrammatorCopyScreen extends AbstractContainerScreen<Keyca
     private void renderElements(){
         this.addRenderableWidget( //copy button (network)
                 new GuiButton(TEXTURE, leftPos+23, topPos+66, 17, 14, 28, 172, 188, Component.empty(),
-                        button -> {}));
+                        button -> {
+                            KeycardInteractions.copyKeycardProperties(stackZero, stackOne);
+                        }));
 
         this.addRenderableWidget( //next button (mode)
                 new GuiButton(TEXTURE, leftPos+159, topPos+66, 10, 14, 4, 172, 188, Component.empty(),
