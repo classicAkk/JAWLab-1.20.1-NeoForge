@@ -1,0 +1,96 @@
+package net.classic_akk.jaw_lab.Content.Blocks.Blocks.Barrier;
+
+import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Util.TickableBE;
+import net.classic_akk.jaw_lab.Content.Blocks.LabBlockEntities;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.stream.Stream;
+
+public class BarrierGateOff extends Block implements EntityBlock {
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final VoxelShape NORTH = Stream.of(
+            Block.box(6, 0, 0, 10, 16, 2),
+            Block.box(7, 0, 2, 9, 16, 3)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape EAST = Stream.of(
+            Block.box(0, 0, 6, 2, 16, 10),
+            Block.box(2, 0, 7, 3, 16, 9)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape SOUTH = Stream.of(
+            Block.box(6, 0, 14, 10, 16, 16),
+            Block.box(7, 0, 13, 9, 16, 14)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape WEST = Stream.of(
+            Block.box(14, 0, 6, 16, 16, 10),
+            Block.box(13, 0, 7, 14, 16, 9)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+
+    public BarrierGateOff(Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
+        switch (state.getValue(FACING)) {
+            case EAST:
+                return EAST;
+            case SOUTH:
+                return SOUTH;
+            case WEST:
+                return WEST;
+            default:
+                return NORTH;
+        }
+    }
+
+            @Override
+            protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+                builder.add(FACING);
+                super.createBlockStateDefinition(builder);
+            }
+
+            @Override
+            public BlockState getStateForPlacement(BlockPlaceContext context) {
+                return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+            }
+
+            @SuppressWarnings("deprecation")
+            @Override
+            public BlockState mirror(BlockState state, Mirror mirror) {
+                return state.rotate(mirror.getRotation(state.getValue(FACING)));
+            }
+
+            @Override
+            public BlockState rotate(BlockState state, LevelAccessor world, BlockPos pos, Rotation direction) {
+                return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
+            }
+    @Override
+    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state){
+        return LabBlockEntities.BARRIER_GATE_OFF.get().create(pos,state);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> type){
+        return TickableBE.getTickerHelper(level);
+    }
+}
