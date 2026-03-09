@@ -1,6 +1,7 @@
 package net.classic_akk.jaw_lab.Screen;
 
 import net.classic_akk.jaw_lab.Lab;
+import net.classic_akk.jaw_lab.Screen.CodeDoor.CodeDoorMenu;
 import net.classic_akk.jaw_lab.Screen.KCPCopy.KeycardProgrammatorCopyMenu;
 import net.classic_akk.jaw_lab.Screen.KCPMain.KeycardProgrammatorMainMenu;
 import net.classic_akk.jaw_lab.Screen.KCPNetwork.KeycardProgrammatorNetworkMenu;
@@ -25,6 +26,9 @@ public class LabMenuTypes {
 
     public static final RegistryObject<MenuType<KeycardProgrammatorMainMenu>> KCP_MAIN =
             registerMenuType("kcp_main", KeycardProgrammatorMainMenu::new);
+
+    public static final RegistryObject<MenuType<CodeDoorMenu>> CODE_DOOR =
+            registerMenuType("code_door", CodeDoorMenu::new);
 
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {

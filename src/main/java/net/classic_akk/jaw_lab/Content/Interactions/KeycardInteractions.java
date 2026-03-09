@@ -1,5 +1,7 @@
-package net.classic_akk.jaw_lab.Content.Network;
+package net.classic_akk.jaw_lab.Content.Interactions;
 
+import net.classic_akk.jaw_lab.Content.Network.NetworkSecurity;
+import net.classic_akk.jaw_lab.Content.Network.NetworkWorldData;
 import net.classic_akk.jaw_lab.Screen.KCPCopy.KeycardProgrammatorCopyMenu;
 import net.classic_akk.jaw_lab.Screen.KCPMain.KeycardProgrammatorMainMenu;
 import net.minecraft.nbt.CompoundTag;
@@ -135,7 +137,7 @@ public class KeycardInteractions {
     public static String getCardOwner(KeycardProgrammatorMainMenu menu, int id) {
         ItemStack stack = menu.getSlot(id).getItem();
         CompoundTag tag = stack.getOrCreateTag();
-        if (!stack.isEmpty() && !tag.isEmpty()) {
+        if (!stack.isEmpty() && tag.contains("cOwner")) {
             return tag.getString("cOwner");
         }
         return "none";

@@ -1,4 +1,4 @@
-package net.classic_akk.jaw_lab.Content.Blocks.BlockEntities;
+package net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Barriers;
 
 import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Util.TickableBE;
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlockEntities;

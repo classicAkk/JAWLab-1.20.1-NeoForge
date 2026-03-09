@@ -1,21 +1,31 @@
 package net.classic_akk.jaw_lab.Screen.ProcessingPackets;
 
-import net.classic_akk.jaw_lab.Content.Network.KeycardInteractions;
-import net.classic_akk.jaw_lab.Content.Network.NetworkInteractions;
+import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.CodeDoors.CodeDoorBE;
+import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.CodeDoors.CodeDoorErrorBE;
+import net.classic_akk.jaw_lab.Content.Blocks.LabBlocks;
+import net.classic_akk.jaw_lab.Content.Interactions.KeycardInteractions;
+import net.classic_akk.jaw_lab.Content.Interactions.NetworkInteractions;
 import net.classic_akk.jaw_lab.Content.Network.NetworkRole;
 import net.classic_akk.jaw_lab.Content.Network.UUIDFetcher;
+import net.classic_akk.jaw_lab.Content.Sound.LabSounds;
+import net.classic_akk.jaw_lab.Screen.CodeDoor.CodeDoorMenu;
 import net.classic_akk.jaw_lab.Screen.KCPCopy.KeycardProgrammatorCopyMenu;
 import net.classic_akk.jaw_lab.Screen.KCPMain.KeycardProgrammatorMainMenu;
 import net.classic_akk.jaw_lab.Screen.KCPNetwork.KeycardProgrammatorNetworkMenu;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.network.NetworkEvent;
 
-import java.util.UUID;
 import java.util.function.Supplier;
 
 public class ProcessingPacket {
@@ -29,6 +39,7 @@ public class ProcessingPacket {
     private static ServerLevel serverLevel;
     private static MinecraftServer server;
     private static Player player;
+    private static BlockEntity blockEntity;
 
     public ProcessingPacket(int containerId, String type) {
         ProcessingPacket.containerId = containerId;
@@ -75,6 +86,11 @@ public class ProcessingPacket {
             ProcessingPacket.serverLevel = (ServerLevel) level;
         }
     }
+    public ProcessingPacket(Level level, BlockEntity blockEntity, String type) {
+        ProcessingPacket.level = level;
+        ProcessingPacket.blockEntity = blockEntity;
+        ProcessingPacket.type = type;
+    }
 
     public void encode(FriendlyByteBuf buf) {
         buf.writeInt(containerId);
@@ -119,6 +135,31 @@ public class ProcessingPacket {
             if (serverPlayer.containerMenu instanceof KeycardProgrammatorCopyMenu CopyMenu) {
                 switch(type) {
                     case("copyCard"): {KeycardInteractions.copyCard(CopyMenu, 36); break;}
+                    default: {System.out.print("Case not found\n"); break;}
+                }
+            }
+            if (serverPlayer.containerMenu instanceof CodeDoorMenu CodeDoorMenu) {
+                switch(type) {
+                    case("openDoor"): {
+                        BlockPos worldPosition = blockEntity.getBlockPos();
+                        BlockState state = level.getBlockState(worldPosition);
+                        if (blockEntity instanceof CodeDoorBE codeDoorBE) {
+                            level.playSound(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), LabSounds.KEYDOOR_CLOSE.get(), SoundSource.AMBIENT, 2f, 1f);
+                            for (int i = 0; i < 20; i++) {
+                                level.addAlwaysVisibleParticle(ParticleTypes.SMOKE, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), 0.1, 0.1, 0.1);
+                            }
+                            level.setBlockAndUpdate(worldPosition, LabBlocks.CODE_DOOR_UP_ERROR.get().withPropertiesOf(state));
+                            level.setBlockAndUpdate(worldPosition.below(), LabBlocks.KEYDOOR_DOWN.get().withPropertiesOf(state).setValue(BlockStateProperties.OPEN, true));
+
+                            BlockEntity newBlockEntity = level.getBlockEntity(worldPosition);
+                            if (newBlockEntity instanceof CodeDoorErrorBE block) {
+                                System.out.print("Success");
+                                block.setPasscode(codeDoorBE.getPasscode());
+                                block.setChanged();
+                            }
+                        }
+                        break;
+                    }
                     default: {System.out.print("Case not found\n"); break;}
                 }
             }

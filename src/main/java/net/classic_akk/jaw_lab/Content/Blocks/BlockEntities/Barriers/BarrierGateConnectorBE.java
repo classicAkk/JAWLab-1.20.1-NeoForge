@@ -1,4 +1,4 @@
-package net.classic_akk.jaw_lab.Content.Blocks.BlockEntities;
+package net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Barriers;
 
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -6,33 +6,34 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class KeyDoorBE extends BlockEntity {
+public class BarrierGateConnectorBE extends BlockEntity {
     private int ticks;
     private int timer;
-    private int clevel;
+    private boolean bstate;
 
-    public KeyDoorBE(BlockPos pos, BlockState state) {
-        super(LabBlockEntities.KEY_DOOR_BE.get(), pos, state);
+    public BarrierGateConnectorBE(BlockPos pos, BlockState state) {
+        super(LabBlockEntities.BARRIER_GATE_BE.get(), pos, state);
     }
 
-    public void setClevel(int clevel){
-        this.clevel = clevel;
+    public void setBState(boolean bstate){
+        this.bstate = bstate;
         setChanged();
     }
 
-    public int getCLevel() {
-        return clevel;
+    public boolean getBState() {
+        return bstate;
     }
+
 
     @Override
     protected void saveAdditional(CompoundTag tag){
         super.saveAdditional(tag);
-        tag.putInt("cLevel", clevel);
+        tag.putBoolean("bState", bstate);
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
-        clevel = tag.getInt("cLevel");
+        bstate = tag.getBoolean("bState");
     }
 }

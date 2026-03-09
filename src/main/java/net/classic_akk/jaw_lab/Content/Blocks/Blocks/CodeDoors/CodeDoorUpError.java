@@ -1,9 +1,11 @@
-package net.classic_akk.jaw_lab.Content.Blocks.Blocks.KeyDoors;
+package net.classic_akk.jaw_lab.Content.Blocks.Blocks.CodeDoors;
 
 import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Util.TickableBE;
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlockEntities;
+import net.classic_akk.jaw_lab.Content.Blocks.LabBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -24,36 +26,47 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
 
-public class KeyDoorUpOpened extends Block implements EntityBlock {
+public class CodeDoorUpError extends Block implements EntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final VoxelShape NORTH = Stream.of(
-            Block.box(0, 0, 6.5, 1, 16, 9.5),
+            Block.box(6.2, 6, 6.9, 9.8, 7, 9.1),
             Block.box(15, 0, 6.5, 16, 16, 9.5),
+            Block.box(0, 0, 6.5, 1, 16, 9.5),
             Block.box(1, 15, 6.5, 15, 16, 9.5),
-            Block.box(1, 0, 7.5, 2, 15, 8.5)
+            Block.box(1, 0, 7.5, 15, 15, 8.5),
+            Block.box(6, 2, 7, 10, 7.4, 9),
+            Block.box(6.5, 2.6, 6.95, 9.5, 5.6, 9.05)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     public static final VoxelShape EAST = Stream.of(
+            Block.box(6.9, 6, 6.2, 9.1, 7, 9.8),
             Block.box(6.5, 0, 15, 9.5, 16, 16),
             Block.box(6.5, 0, 0, 9.5, 16, 1),
             Block.box(6.5, 15, 1, 9.5, 16, 15),
-            Block.box(7.5, 0, 14, 8.5, 15, 15)
+            Block.box(7.5, 0, 1, 8.5, 15, 15),
+            Block.box(7, 2, 6, 9, 7.4, 10),
+            Block.box(6.95, 2.6, 6.5, 9.05, 5.6, 9.5)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     public static final VoxelShape SOUTH = Stream.of(
+            Block.box(6.2, 6, 6.9, 9.8, 7, 9.1),
             Block.box(15, 0, 6.5, 16, 16, 9.5),
             Block.box(0, 0, 6.5, 1, 16, 9.5),
             Block.box(1, 15, 6.5, 15, 16, 9.5),
-            Block.box(14, 0, 7.5, 15, 15, 8.5)
+            Block.box(1, 0, 7.5, 15, 15, 8.5),
+            Block.box(6, 2, 7, 10, 7.4, 9),
+            Block.box(6.5, 2.6, 6.95, 9.5, 5.6, 9.05)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     public static final VoxelShape WEST = Stream.of(
-            Block.box(6.5, 0, 0, 9.5, 16, 1),
+            Block.box(6.9, 6, 6.2, 9.1, 7, 9.8),
             Block.box(6.5, 0, 15, 9.5, 16, 16),
+            Block.box(6.5, 0, 0, 9.5, 16, 1),
             Block.box(6.5, 15, 1, 9.5, 16, 15),
-            Block.box(7.5, 0, 1, 8.5, 15, 2)
+            Block.box(7.5, 0, 1, 8.5, 15, 15),
+            Block.box(7, 2, 6, 9, 7.4, 10),
+            Block.box(6.95, 2.6, 6.5, 9.05, 5.6, 9.5)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
-    public KeyDoorUpOpened(Properties properties) {
+    public CodeDoorUpError(Properties properties) {
         super(properties);
-
         this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
     }
 
@@ -94,8 +107,18 @@ public class KeyDoorUpOpened extends Block implements EntityBlock {
     }
 
     @Override
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        if (level.getBlockState(pos.below()).getBlock() == LabBlocks.KEYDOOR_DOWN.get()) {
+            BlockPos below = pos.below();
+            level.destroyBlock(below, false);
+        }
+
+        super.playerWillDestroy(level, pos, state, player);
+    }
+
+    @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state){
-        return LabBlockEntities.KEY_DOOR_OPENED_BE.get().create(pos,state);
+        return LabBlockEntities.CODE_DOOR_ERROR_BE.get().create(pos,state);
     }
 
     @Nullable
