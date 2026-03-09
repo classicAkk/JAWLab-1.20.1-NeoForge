@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=north": {
+      "model":  "lab:block/codedoors/codedoor_up_error"
+    },
+    "facing=west": {
+      "model":  "lab:block/codedoors/codedoor_up_error","y": 90
+    },
+    "facing=south": {
+      "model":  "lab:block/codedoors/codedoor_up_error","y": 180
+    },
+    "facing=east": {
+      "model":  "lab:block/codedoors/codedoor_up_error","y": 270
+    }
+  }
+}

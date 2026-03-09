@@ -2,6 +2,7 @@ package net.classic_akk.jaw_lab.Render;
 
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlocks;
 import net.classic_akk.jaw_lab.Lab;
+import net.classic_akk.jaw_lab.Screen.CodeDoor.CodeDoorScreen;
 import net.classic_akk.jaw_lab.Screen.KCPCopy.KeycardProgrammatorCopyScreen;
 import net.classic_akk.jaw_lab.Screen.KCPMain.KeycardProgrammatorMainScreen;
 import net.classic_akk.jaw_lab.Screen.KCPNetwork.KeycardProgrammatorNetworkScreen;
@@ -28,6 +29,7 @@ public class ModEventClientBusEvent {
         MenuScreens.register(LabMenuTypes.KCP_NETWORK.get(), KeycardProgrammatorNetworkScreen::new);
         MenuScreens.register(LabMenuTypes.KCP_COPY.get(), KeycardProgrammatorCopyScreen::new);
         MenuScreens.register(LabMenuTypes.KCP_MAIN.get(), KeycardProgrammatorMainScreen::new);
+        MenuScreens.register(LabMenuTypes.CODE_DOOR.get(), CodeDoorScreen::new);
     }
 
     public static void doSetup(FMLClientSetupEvent event) {

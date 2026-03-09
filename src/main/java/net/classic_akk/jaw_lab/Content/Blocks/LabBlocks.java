@@ -1,5 +1,7 @@
 package net.classic_akk.jaw_lab.Content.Blocks;
 
+import net.classic_akk.jaw_lab.Content.Blocks.Blocks.CodeDoors.CodeDoorUp;
+import net.classic_akk.jaw_lab.Content.Blocks.Blocks.CodeDoors.CodeDoorUpError;
 import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Decorations.DirectionalBlock;
 import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Decorations.GlassRailings;
 import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Decorations.GlassRailingsCorner;
@@ -99,26 +101,28 @@ public class LabBlocks {
 
 
     //KeyDoors
-    public static final RegistryObject<Block> KEYDOOR_DOWN_CLOSED = registerBlock("keydoor_down_closed",
-            () -> new KeyDoorDownClosed(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> KEYDOOR_DOWN_OPENED = registerBlock("keydoor_down_opened",
-            () -> new KeyDoorDownOpened(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
+    public static final RegistryObject<Block> KEYDOOR_DOWN = registerBlock("keydoor_down",
+            () -> new KeyDoorDown(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
                     .dynamicShape()));
 
-    public static final RegistryObject<Block> KEYDOOR_UP_CLOSED = registerBlock("keydoor_up_closed",
-            () -> new KeyDoorUpClosed(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> KEYDOOR_UP_OPENED = registerBlock("keydoor_up_opened",
-            () -> new KeyDoorUpOpened(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
+    public static final RegistryObject<Block> KEYDOOR_UP = registerBlock("keydoor_up",
+            () -> new KeyDoorUp(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
                     .dynamicShape()));
 
     public static final RegistryObject<Block> KEYDOOR_UP_ERROR = registerBlock("keydoor_up_error",
             () -> new KeyDoorUpError(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
+                    .noOcclusion()
+                    .dynamicShape()));
+
+    public static final RegistryObject<Block> CODE_DOOR_UP = registerBlock("codedoor_up",
+            () -> new CodeDoorUp(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
+                    .noOcclusion()
+                    .dynamicShape()));
+
+    public static final RegistryObject<Block> CODE_DOOR_UP_ERROR = registerBlock("codeoor_up_error",
+            () -> new CodeDoorUpError(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
                     .dynamicShape()));
 

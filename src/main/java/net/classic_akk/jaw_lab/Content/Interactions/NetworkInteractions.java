@@ -1,5 +1,9 @@
-package net.classic_akk.jaw_lab.Content.Network;
+package net.classic_akk.jaw_lab.Content.Interactions;
 
+import net.classic_akk.jaw_lab.Content.Network.NetworkRole;
+import net.classic_akk.jaw_lab.Content.Network.NetworkSecurity;
+import net.classic_akk.jaw_lab.Content.Network.NetworkUser;
+import net.classic_akk.jaw_lab.Content.Network.NetworkWorldData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 
@@ -46,13 +50,27 @@ public class NetworkInteractions {
 
     public static void setRole(ServerLevel level, String networkName, Player player, String targetName, NetworkRole role) {
         NetworkWorldData data = NetworkWorldData.get((ServerLevel) level);
-        if (!NetworkSecurity.canChangeRole(data.getNetwork(networkName).getUser(player.getUUID()))) return;
-        if (data.getUserRole(networkName, data.getUserUUID(networkName, targetName)) == NetworkRole.FOUNDER) return;
-        if (role == NetworkRole.FOUNDER && data.getUserRole(networkName, player.getUUID()) == NetworkRole.FOUNDER) {
-            data.setUserRoleSafe(networkName, player, data.getUserUUID(networkName, targetName), role);
-            data.setUserRole(networkName, player.getUUID(), NetworkRole.ADMIN);
+        UUID uuid = data.getUserUUID(networkName, targetName);
+        UUID pUuid = player.getUUID();
+        if (role == null) return;
+        if (data.getUserRole(networkName, uuid) == NetworkRole.FOUNDER) return;
+        if (role == NetworkRole.FOUNDER && data.getUserRole(networkName, pUuid) == NetworkRole.FOUNDER) {
+            data.setUserRoleSafe(networkName, player, uuid, role);
+            data.setUserRole(networkName, pUuid, NetworkRole.ADMIN);
         }
-        data.setUserRoleSafe(networkName, player, data.getUserUUID(networkName, targetName), role);
+        data.setUserRoleSafe(networkName, player, uuid, role);
+    }
+    public static boolean canSetRole(ServerLevel level, String networkName, Player player, String targetName, NetworkRole role) {
+        NetworkWorldData data = NetworkWorldData.get((ServerLevel) level);
+        UUID uuid = data.getUserUUID(networkName, targetName);
+        UUID pUuid = player.getUUID();
+        if (role == null) return false;
+        if (!NetworkSecurity.canChangeRole(data.getUser(networkName, targetName))) return false;
+        if (data.getUserRole(networkName, uuid) == NetworkRole.FOUNDER) return false;
+        if (role == NetworkRole.FOUNDER && data.getUserRole(networkName, pUuid) == NetworkRole.FOUNDER) {
+            return true;
+        }
+        return true;
     }
 
     public static int getUserAccessLevel(ServerLevel level, String networkName, Player player) {
@@ -76,11 +94,20 @@ public class NetworkInteractions {
         }
         return null;
     }
-    public static NetworkRole getUserStatus(ServerLevel level, String networkName, String targetName) {
+    public static NetworkRole getUserRole(ServerLevel level, String networkName, String targetName) {
         NetworkWorldData data = NetworkWorldData.get((ServerLevel) level);
         if (data.isValidNetwork(networkName)) {
             return data.getUserRole(networkName, data.getUserUUID(networkName, targetName));
         }
         return null;
+    }
+
+    public static boolean canIncreaseAccessLevel(ServerLevel level, String networkName, String targetName, Player player) {
+        NetworkWorldData data = NetworkWorldData.get((ServerLevel) level);
+        return data.canIncrementLevel(networkName, player, data.getUserUUID(networkName, targetName));
+    }
+    public static boolean canDecreaseAccessLevel(ServerLevel level, String networkName, String targetName, Player player) {
+        NetworkWorldData data = NetworkWorldData.get((ServerLevel) level);
+        return data.canDecrementLevel(networkName, player, data.getUserUUID(networkName, targetName));
     }
 }

@@ -18,7 +18,6 @@ public class UUIDFetcher {
 
     public static CompletableFuture<UUID> getPlayerUUIDAsync(MinecraftServer server, String nickname) {
         return CompletableFuture.supplyAsync(() -> {
-
             ServerPlayer onlinePlayer = server.getPlayerList().getPlayerByName(nickname);
             if (onlinePlayer != null) {
                 return onlinePlayer.getUUID();
@@ -30,8 +29,7 @@ public class UUIDFetcher {
             }
 
             if (!server.usesAuthentication()) {
-                return UUID.nameUUIDFromBytes(("OfflinePlayer:" + nickname)
-                        .getBytes(StandardCharsets.UTF_8));
+                return UUID.nameUUIDFromBytes(("OfflinePlayer:" + nickname).getBytes(StandardCharsets.UTF_8));
             }
 
             try {
@@ -45,7 +43,6 @@ public class UUIDFetcher {
                     JsonObject json = JsonParser.parseReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))
                             .getAsJsonObject();
                     String id = json.get("id").getAsString();
-                    // UUID приходит без дефисов
                     return UUID.fromString(id.replaceFirst(
                             "(\\w{8})(\\w{4})(\\w{4})(\\w{4})(\\w{12})",
                             "$1-$2-$3-$4-$5"

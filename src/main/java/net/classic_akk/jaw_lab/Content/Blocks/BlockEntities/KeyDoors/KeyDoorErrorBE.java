@@ -1,4 +1,4 @@
-package net.classic_akk.jaw_lab.Content.Blocks.BlockEntities;
+package net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.KeyDoors;
 
 import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Util.TickableBE;
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlockEntities;
@@ -10,14 +10,22 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-public class KeyDoorOpenedBE extends BlockEntity implements TickableBE {
+public class KeyDoorErrorBE extends BlockEntity implements TickableBE {
     private int ticks;
     private int timer;
     private int clevel;
 
-    public KeyDoorOpenedBE(BlockPos pos, BlockState state) {
-        super(LabBlockEntities.KEY_DOOR_OPENED_BE.get(), pos, state);
+    public KeyDoorErrorBE(BlockPos pos, BlockState state) {
+        super(LabBlockEntities.KEY_DOOR_ERROR_BE.get(), pos, state);
+    }
+
+    public void setData(BlockEntity be, int level){
+        if (be instanceof KeyDoorBE block) {
+            block.setClevel(level);
+            block.setChanged();
+        }
     }
 
     public void setClevel(int clevel){
@@ -27,14 +35,6 @@ public class KeyDoorOpenedBE extends BlockEntity implements TickableBE {
 
     public int getCLevel() {
         return clevel;
-    }
-
-    public void setData(BlockEntity be, int level){
-        if (be instanceof KeyDoorErrorBE block) {
-
-            block.setClevel(level);
-            block.setChanged();
-        }
     }
 
     @Override
@@ -51,28 +51,27 @@ public class KeyDoorOpenedBE extends BlockEntity implements TickableBE {
 
     @Override
     public void tick() {
-        if (this.level == null || this.level.isClientSide()) {
+        if (this.level == null || this.level.isClientSide())
             return;
-        }
-        BlockState state = level.getBlockState(this.getBlockPos());
-        BlockEntity blockEntity = this.level.getBlockEntity(this.worldPosition);
 
         if (this.ticks++ % 20 == 0) {
-            this.level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), LabSounds.KEYDOOR_TICK.get(), SoundSource.AMBIENT, 0.5f, 1f);
             timer++;
-
-            if (timer == 4) {
+            if (timer == 2) {
                 timer = 0;
-                if (blockEntity instanceof KeyDoorOpenedBE keydoor_opened) {
-                    this.level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), LabSounds.KEYDOOR_CLOSE.get(), SoundSource.AMBIENT, 2f, 1f);
+                BlockEntity blockEntity = this.level.getBlockEntity(this.worldPosition);
+
+                if (blockEntity instanceof KeyDoorErrorBE keydoor_error) {
+                    BlockState state = level.getBlockState(this.getBlockPos());
+                    level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), LabSounds.KEYDOOR_ERROR.get(), SoundSource.AMBIENT, 0.5f, 0f);
+                    level.setBlockAndUpdate(this.getBlockPos(), LabBlocks.KEYDOOR_UP.get().withPropertiesOf(state).setValue(BlockStateProperties.OPEN, false));
                     for (int i = 0; i < 20; i++) {
                         this.level.addAlwaysVisibleParticle(ParticleTypes.SMOKE, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), 0.1, 0.1, 0.1);
                     }
-                    this.level.setBlockAndUpdate(this.getBlockPos(), LabBlocks.KEYDOOR_UP_ERROR.get().withPropertiesOf(state));
-                    this.level.setBlockAndUpdate(this.getBlockPos().below(), LabBlocks.KEYDOOR_DOWN_CLOSED.get().withPropertiesOf(state));
 
                     BlockEntity newBlockEntity = this.level.getBlockEntity(this.worldPosition);
-                    setData(newBlockEntity, keydoor_opened.getCLevel());
+                    if (newBlockEntity instanceof KeyDoorBE keydoor) {
+                        setData(newBlockEntity, keydoor_error.getCLevel());
+                    }
                 }
             }
         }

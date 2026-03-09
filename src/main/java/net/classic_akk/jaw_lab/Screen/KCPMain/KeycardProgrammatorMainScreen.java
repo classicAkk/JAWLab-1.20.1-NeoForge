@@ -1,10 +1,9 @@
 package net.classic_akk.jaw_lab.Screen.KCPMain;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.classic_akk.jaw_lab.Content.Network.KeycardInteractions;
+import net.classic_akk.jaw_lab.Content.Interactions.KeycardInteractions;
 import net.classic_akk.jaw_lab.Lab;
 import net.classic_akk.jaw_lab.Screen.Elements.GuiButton;
-import net.classic_akk.jaw_lab.Screen.KCPNetwork.KeycardProgrammatorNetworkMenu;
 import net.classic_akk.jaw_lab.Screen.ProcessingPackets.OpenCopyMenuPacket;
 import net.classic_akk.jaw_lab.Screen.ProcessingPackets.OpenNetworkMenuPacket;
 import net.classic_akk.jaw_lab.Screen.ProcessingPackets.ProcessingPacket;
@@ -25,9 +24,8 @@ import org.lwjgl.glfw.GLFW;
 public class KeycardProgrammatorMainScreen extends AbstractContainerScreen<KeycardProgrammatorMainMenu> {
     Player player;
     Level level = KeycardProgrammatorMainMenu.getServerLevel();
-    private EditBox networkField;
-    private EditBox nicknameField;
     BlockPos pos = menu.blockEntity.getBlockPos();
+    private EditBox field;
 
     private final ResourceLocation TEXTURE =
             new ResourceLocation(Lab.MOD_ID, "textures/gui/keycard_programmator/kcp_main.png");
@@ -67,7 +65,7 @@ public class KeycardProgrammatorMainScreen extends AbstractContainerScreen<Keyca
         renderTextElements(guiGraphics);
 
 
-        if (nicknameField.isFocused() && minecraft.player != null) {
+        if (field.isFocused() && minecraft.player != null) {
             minecraft.player.input.leftImpulse = 0;
             minecraft.player.input.forwardImpulse = 0;
             minecraft.player.input.jumping = false;
@@ -80,14 +78,14 @@ public class KeycardProgrammatorMainScreen extends AbstractContainerScreen<Keyca
         String uuid = KeycardInteractions.getCardUUID(menu, 36);
         String network = KeycardInteractions.getCardNetwork(menu, 36);
         int cLevel = KeycardInteractions.getCardLevel(menu, 36);
-        guiGraphics.drawString(this.font, "Owner:", leftPos+62, topPos+14, 0xFFFFFF);
-        guiGraphics.drawString(this.font, owner, leftPos+96, topPos+14, KeycardInteractions.getColor(owner));
-        guiGraphics.drawString(this.font, "UUID:", leftPos+62, topPos+22, 0xFFFFFF);
-        guiGraphics.drawString(this.font, uuid, leftPos+88, topPos+22, KeycardInteractions.getColor(uuid));
-        guiGraphics.drawString(this.font, "Network:", leftPos+62, topPos+30, 0xFFFFFF);
-        guiGraphics.drawString(this.font, network, leftPos+105, topPos+30, KeycardInteractions.getColor(network));
-        guiGraphics.drawString(this.font, "Level:", leftPos+62, topPos+38, 0xFFFFFF);
-        guiGraphics.drawString(this.font, String.valueOf(cLevel), leftPos+92, topPos+38, KeycardInteractions.getColorNumbers(cLevel));
+        guiGraphics.drawString(this.font, "Owner:", leftPos+62, topPos+16, 0xFFFFFF);
+        guiGraphics.drawString(this.font, owner, leftPos+96, topPos+16, KeycardInteractions.getColor(owner));
+        guiGraphics.drawString(this.font, "UUID:", leftPos+62, topPos+24, 0xFFFFFF);
+        guiGraphics.drawString(this.font, uuid, leftPos+88, topPos+24, KeycardInteractions.getColor(uuid));
+        guiGraphics.drawString(this.font, "Network:", leftPos+62, topPos+32, 0xFFFFFF);
+        guiGraphics.drawString(this.font, network, leftPos+105, topPos+32, KeycardInteractions.getColor(network));
+        guiGraphics.drawString(this.font, "Level:", leftPos+62, topPos+40, 0xFFFFFF);
+        guiGraphics.drawString(this.font, String.valueOf(cLevel), leftPos+93, topPos+40, KeycardInteractions.getColorNumbers(cLevel));
     }
 
     private void renderElements(){
@@ -98,38 +96,44 @@ public class KeycardProgrammatorMainScreen extends AbstractContainerScreen<Keyca
                         }));
 
         this.addRenderableWidget( //add_network button (card network)
-                new GuiButton(TEXTURE, leftPos+43, topPos+50, 14, 14, 76, 172, 188, Component.empty(),
+                new GuiButton(TEXTURE, leftPos+43, topPos+50, 14, 14, 44, 172, 188, Component.empty(),
                         button -> {
-                        if (!networkField.getValue().isBlank()) {
-                            LabPackets.INSTANCE.sendToServer(new ProcessingPacket(36, "addNetwork", player, networkField.getValue()));
-                        }
+                            if (!field.getValue().isEmpty()) {
+                                LabPackets.INSTANCE.sendToServer(new ProcessingPacket(36, "addNetwork", player, field.getValue()));
+                            }
                         }));
         this.addRenderableWidget( //delete_network button (card network)
-                new GuiButton(TEXTURE, leftPos+43, topPos+66, 14, 14, 92, 172, 188, Component.empty(),
+                new GuiButton(TEXTURE, leftPos+43, topPos+66, 14, 14, 60, 172, 188, Component.empty(),
                         button -> {
                             LabPackets.INSTANCE.sendToServer(new ProcessingPacket(36, "removeNetwork"));
                         }));
 
         this.addRenderableWidget( //bind button (owner UUID)
-                new GuiButton(TEXTURE, leftPos+59, topPos+66, 10, 14, 108, 172, 188, Component.empty(),
+                new GuiButton(TEXTURE, leftPos+27, topPos+66, 14, 14, 76, 172, 188, Component.empty(),
                         button -> {
                             LabPackets.INSTANCE.sendToServer(new ProcessingPacket(36, "uuid"));
                         }));
         this.addRenderableWidget( //add button (card owner)
-                new GuiButton(TEXTURE, leftPos+71, topPos+66, 10, 14, 120, 172, 188, Component.empty(),
+                new GuiButton(TEXTURE, leftPos+27, topPos+50, 14, 14, 44, 172, 188, Component.empty(),
                         button -> {
-                            LabPackets.INSTANCE.sendToServer(new ProcessingPacket(36, "owner", nicknameField.getValue()));
+                            if (!field.getValue().isEmpty()) {
+                                LabPackets.INSTANCE.sendToServer(new ProcessingPacket(36, "owner", field.getValue()));
+                            }
                         }));
 
         this.addRenderableWidget( //add_level button (card level)
-                new GuiButton(TEXTURE, leftPos+27, topPos+50, 14, 14, 44, 172, 188, Component.empty(),
+                new GuiButton(TEXTURE, leftPos+147, topPos+53, 10, 10, 92, 172, 188, Component.empty(),
                         button -> {
-                            LabPackets.INSTANCE.sendToServer(new ProcessingPacket(level, player, networkField.getValue(), "increaseLevel"));
+                            if (!field.getValue().isEmpty()) {
+                                LabPackets.INSTANCE.sendToServer(new ProcessingPacket(level, player, field.getValue(), "increaseLevel"));
+                            }
                         }));
         this.addRenderableWidget( //decrease_level button (card level)
-                new GuiButton(TEXTURE, leftPos+27, topPos+66, 14, 14, 60, 172, 188, Component.empty(),
+                new GuiButton(TEXTURE, leftPos+159, topPos+53, 10, 10, 104, 172, 188, Component.empty(),
                         button -> {
-                            LabPackets.INSTANCE.sendToServer(new ProcessingPacket(level, player, networkField.getValue(), "decreaseLevel"));
+                            if (!field.getValue().isEmpty()) {
+                                LabPackets.INSTANCE.sendToServer(new ProcessingPacket(level, player, field.getValue(), "decreaseLevel"));
+                            }
                         }));
 
         this.addRenderableWidget( //next button (mode)
@@ -143,15 +147,13 @@ public class KeycardProgrammatorMainScreen extends AbstractContainerScreen<Keyca
                             LabPackets.INSTANCE.sendToServer(new OpenNetworkMenuPacket(pos));
                         }));
 
-        nicknameField = new EditBox(this.font, leftPos+84, topPos+67, 60, 12, Component.literal("User"));
-        nicknameField.setMaxLength(50);nicknameField.setBordered(true);nicknameField.setVisible(true);nicknameField.setTextColor(0xFFFFFF);this.addRenderableWidget(nicknameField);
-        networkField = new EditBox(this.font, leftPos+84, topPos+51, 60, 12, Component.literal("Network"));
-        networkField.setMaxLength(50);nicknameField.setBordered(true);nicknameField.setVisible(true);nicknameField.setTextColor(0xFFFFFF);this.addRenderableWidget(networkField);
+        field = new EditBox(this.font, leftPos+60, topPos+67, 84, 12, Component.literal("Field"));
+        field.setMaxLength(18);field.setBordered(true);field.setVisible(true);field.setTextColor(0xFFFFFF);this.addRenderableWidget(field);
     }
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (nicknameField.isFocused()) {
+        if (field.isFocused()) {
             if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
                 return super.keyPressed(keyCode, scanCode, modifiers);
             }
@@ -159,19 +161,8 @@ public class KeycardProgrammatorMainScreen extends AbstractContainerScreen<Keyca
             if (keyCode == GLFW.GLFW_KEY_E) {
                 return true;
             }
-            return nicknameField.keyPressed(keyCode, scanCode, modifiers) || nicknameField.canConsumeInput();
+            return field.keyPressed(keyCode, scanCode, modifiers) || field.canConsumeInput();
         }
-        if (networkField.isFocused()) {
-            if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
-                return super.keyPressed(keyCode, scanCode, modifiers);
-            }
-
-            if (keyCode == GLFW.GLFW_KEY_E) {
-                return true;
-            }
-            return networkField.keyPressed(keyCode, scanCode, modifiers) || networkField.canConsumeInput();
-        }
-
 
         return super.keyPressed(keyCode, scanCode, modifiers);
     }

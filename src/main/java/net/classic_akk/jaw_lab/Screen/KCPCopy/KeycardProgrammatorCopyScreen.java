@@ -1,7 +1,6 @@
 package net.classic_akk.jaw_lab.Screen.KCPCopy;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.classic_akk.jaw_lab.Content.Network.KeycardInteractions;
 import net.classic_akk.jaw_lab.Lab;
 import net.classic_akk.jaw_lab.Screen.Elements.GuiButton;
 import net.classic_akk.jaw_lab.Screen.ProcessingPackets.OpenMainMenuPacket;

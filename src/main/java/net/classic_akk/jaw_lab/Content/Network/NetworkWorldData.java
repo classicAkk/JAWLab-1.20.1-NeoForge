@@ -7,7 +7,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.saveddata.SavedData;
 
-import javax.annotation.Nullable;
 import java.util.*;
 
 public class NetworkWorldData extends SavedData {
@@ -118,6 +117,31 @@ public class NetworkWorldData extends SavedData {
         setDirty();
     }
 
+    public boolean canIncrementLevel(String networkName, Player player, UUID uuid) {
+        Network network = networks.get(networkName); if (network == null) return false;
+        NetworkUser user = network.getUser(uuid);
+        NetworkUser actor = network.getUser(player.getUUID());
+        NetworkRole role = network.getUser(uuid).getRole();
+        NetworkRole actorRole = actor.getRole();
+        if (!NetworkSecurity.canChangeLevel(actor)) return false;
+        if (role == NetworkRole.FOUNDER || role == NetworkRole.ADMIN) return false;
+        if (actor.getAccessLevel() > user.getAccessLevel() || actorRole == NetworkRole.FOUNDER || actorRole == NetworkRole.ADMIN) {
+                return true;
+        }
+        return false;
+    }
+    public boolean canDecrementLevel(String networkName, Player player, UUID uuid) {
+        Network network = networks.get(networkName); if (network == null) return false;
+        NetworkUser user = network.getUser(uuid);
+        NetworkUser actor = network.getUser(player.getUUID());
+        NetworkRole role = network.getUser(uuid).getRole();
+        if (!NetworkSecurity.canChangeLevel(actor)) return false;
+        if (role == NetworkRole.FOUNDER || role == NetworkRole.ADMIN) return false;
+        if (user.getAccessLevel() == 0) return false;
+
+        return true;
+    }
+
     private NetworkUser findUser(String networkName, UUID uuid) {
         Network network = networks.get(networkName);
         if (network == null) return null;
@@ -183,6 +207,10 @@ public class NetworkWorldData extends SavedData {
     public UUID getUserUUID(String networkName, String username) {
         NetworkUser user = findUser(networkName, username);
         return user != null ? user.getUUID() : null;
+    }
+    public NetworkUser getUser(String networkName, String username) {
+        NetworkUser user = findUser(networkName, getUserUUID(networkName, username));
+        return user != null ? user : null;
     }
     public void clear() {
         networks.clear();
