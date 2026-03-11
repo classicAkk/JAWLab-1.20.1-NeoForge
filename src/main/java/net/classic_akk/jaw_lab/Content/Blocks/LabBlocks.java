@@ -1,7 +1,6 @@
 package net.classic_akk.jaw_lab.Content.Blocks;
 
-import net.classic_akk.jaw_lab.Content.Blocks.Blocks.CodeDoors.CodeDoorUp;
-import net.classic_akk.jaw_lab.Content.Blocks.Blocks.CodeDoors.CodeDoorUpError;
+import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Doors.CodeDoor;
 import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Decorations.DirectionalBlock;
 import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Decorations.GlassRailings;
 import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Decorations.GlassRailingsCorner;
@@ -13,7 +12,7 @@ import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Barrier.BarrierGate;
 import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Barrier.BarrierGateConnector;
 import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Barrier.BarrierGateOff;
 import net.classic_akk.jaw_lab.Content.Blocks.Blocks.KeyCards.*;
-import net.classic_akk.jaw_lab.Content.Blocks.Blocks.KeyDoors.*;
+import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Doors.*;
 import net.classic_akk.jaw_lab.Content.Blocks.Blocks.KeycardProgrammator;
 import net.classic_akk.jaw_lab.Content.Blocks.Blocks.LED_Lamp;
 import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Pickable.WireCuttersBlock;
@@ -101,32 +100,22 @@ public class LabBlocks {
 
 
     //KeyDoors
-    public static final RegistryObject<Block> KEYDOOR_DOWN = registerBlock("keydoor_down",
+    public static final RegistryObject<Block> KEYDOOR_DOWN = registerBlock("key_door_down",
             () -> new KeyDoorDown(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
                     .dynamicShape()));
 
-    public static final RegistryObject<Block> KEYDOOR_UP = registerBlock("keydoor_up",
-            () -> new KeyDoorUp(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
+    public static final RegistryObject<Block> KEY_DOOR = registerBlock("key_door",
+            () -> new KeyDoor(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
                     .dynamicShape()));
 
-    public static final RegistryObject<Block> KEYDOOR_UP_ERROR = registerBlock("keydoor_up_error",
-            () -> new KeyDoorUpError(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
+    public static final RegistryObject<Block> CODE_DOOR = registerBlock("code_door",
+            () -> new CodeDoor(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
                     .dynamicShape()));
 
-    public static final RegistryObject<Block> CODE_DOOR_UP = registerBlock("codedoor_up",
-            () -> new CodeDoorUp(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-
-    public static final RegistryObject<Block> CODE_DOOR_UP_ERROR = registerBlock("codeoor_up_error",
-            () -> new CodeDoorUpError(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-
-    //decorations
+    //Decorations
     public static final RegistryObject<Block> GLASS_RAILINGS = registerBlock("glass_railings",
             () -> new GlassRailings(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.GLASS)
                     .noOcclusion()
@@ -152,7 +141,7 @@ public class LabBlocks {
                     BlockSetType.IRON, 200, true));
 
 
-    //electric
+    //Electric
     public static final RegistryObject<Block> ELECTRICAL_PANEL_FINE_CLOSED = registerBlock("electrical_panel_fine_closed",
             () -> new Grating(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()

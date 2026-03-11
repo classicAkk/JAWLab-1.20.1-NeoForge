@@ -1,7 +1,8 @@
 package net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.KeyDoors;
 
+import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Util.DoorState;
 import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Util.TickableBE;
-import net.classic_akk.jaw_lab.Content.Blocks.Blocks.KeyDoors.KeyDoorUp;
+import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Doors.KeyDoor;
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlockEntities;
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlocks;
 import net.classic_akk.jaw_lab.Content.Sound.LabSounds;
@@ -22,6 +23,9 @@ public class KeyDoorBE extends BlockEntity implements TickableBE {
         super(LabBlockEntities.KEY_DOOR_BE.get(), pos, state);
     }
 
+    public void resetTick() {
+        ticks = 0;
+    }
     public void setClevel(int clevel){
         this.clevel = clevel;
         setChanged();
@@ -29,13 +33,6 @@ public class KeyDoorBE extends BlockEntity implements TickableBE {
 
     public int getCLevel() {
         return clevel;
-    }
-
-    public void setData(BlockEntity be, int level){
-        if (be instanceof KeyDoorErrorBE block) {
-            block.setClevel(level);
-            block.setChanged();
-        }
     }
 
     @Override
@@ -52,29 +49,36 @@ public class KeyDoorBE extends BlockEntity implements TickableBE {
 
     @Override
     public void tick() {
-        if (this.level == null || this.level.isClientSide()) {
-            return;
+        if (level == null || level.isClientSide()) return;
+        BlockPos pos = getBlockPos();
+        BlockState state = level.getBlockState(pos);
+        int x = worldPosition.getX(); int y = worldPosition.getY(); int z = worldPosition.getZ();
+
+        if (state.getValue(KeyDoor.STATE) == DoorState.OPENED) {
+            if (ticks++ % 20 == 0) {
+                level.playSound(null, x, y, z, LabSounds.KEYDOOR_TICK.get(), SoundSource.BLOCKS, 0.5f, 1f);
+                timer++;
+                if (timer == 4) {
+                    timer = 0;
+                    level.playSound(null, x, y, z, LabSounds.KEYDOOR_CLOSE.get(), SoundSource.BLOCKS, 2f, 1f);
+                    for (int i = 0; i < 20; i++) level.addAlwaysVisibleParticle(ParticleTypes.SMOKE, x, y, z, 0.1, 0.1, 0.1);
+
+                    level.setBlockAndUpdate(pos, state.setValue(KeyDoor.STATE, DoorState.ERROR));
+                    level.setBlockAndUpdate(pos.below(), LabBlocks.KEYDOOR_DOWN.get().withPropertiesOf(state.setValue(KeyDoor.STATE, DoorState.CLOSED)));
+                    resetTick();
+                }
+            }
         }
-        BlockState state = level.getBlockState(this.getBlockPos());
-        BlockEntity blockEntity = this.level.getBlockEntity(this.worldPosition);
-
-        if (!KeyDoorUp.isOpen(state)) return;
-        if (this.ticks++ % 20 == 0) {
-            this.level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), LabSounds.KEYDOOR_TICK.get(), SoundSource.AMBIENT, 0.5f, 1f);
-            timer++;
-
-            if (timer == 4) {
-                timer = 0;
-                if (blockEntity instanceof KeyDoorBE keydoor) {
-                    this.level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), LabSounds.KEYDOOR_CLOSE.get(), SoundSource.AMBIENT, 2f, 1f);
+        if (state.getValue(KeyDoor.STATE) == DoorState.ERROR) {
+            if (ticks++ % 20 == 0) {
+                timer++;
+                if (timer == 2) {
+                    timer = 0;
+                    level.playSound(null, x, y, z, LabSounds.KEYDOOR_ERROR.get(), SoundSource.BLOCKS, 0.5f, 0f);
+                    level.setBlockAndUpdate(pos, state.setValue(KeyDoor.STATE, DoorState.CLOSED));
                     for (int i = 0; i < 20; i++) {
-                        this.level.addAlwaysVisibleParticle(ParticleTypes.SMOKE, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), 0.1, 0.1, 0.1);
+                        level.addAlwaysVisibleParticle(ParticleTypes.SMOKE, x, y, z, 0.1, 0.1, 0.1);
                     }
-                    this.level.setBlockAndUpdate(this.getBlockPos(), LabBlocks.KEYDOOR_UP_ERROR.get().withPropertiesOf(state));
-                    this.level.setBlockAndUpdate(this.getBlockPos().below(), LabBlocks.KEYDOOR_DOWN.get().withPropertiesOf(state).setValue(BlockStateProperties.OPEN, false));
-
-                    BlockEntity newBlockEntity = this.level.getBlockEntity(this.worldPosition);
-                    setData(newBlockEntity, keydoor.getCLevel());
                 }
             }
         }

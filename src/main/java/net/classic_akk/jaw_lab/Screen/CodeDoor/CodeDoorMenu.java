@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class CodeDoorMenu extends AbstractContainerMenu {
     public static CodeDoorBE blockEntity;
+    private static Player player;
     private ContainerLevelAccess access;
     private static Level level;
 
@@ -26,11 +27,15 @@ public class CodeDoorMenu extends AbstractContainerMenu {
         super(LabMenuTypes.CODE_DOOR.get(), id);
         blockEntity = ((CodeDoorBE) entity);
         this.access = access;
+        player = inv.player;
         if (!blockEntity.getLevel().isClientSide()) {
             level = blockEntity.getLevel();
         }
     }
 
+    public static Player getPlayer() {
+        return player;
+    }
     public static Level getLevel() {
         return level;
     }

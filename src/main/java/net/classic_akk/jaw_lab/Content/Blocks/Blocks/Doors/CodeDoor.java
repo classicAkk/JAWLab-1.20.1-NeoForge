@@ -1,20 +1,20 @@
-package net.classic_akk.jaw_lab.Content.Blocks.Blocks.KeyDoors;
+package net.classic_akk.jaw_lab.Content.Blocks.Blocks.Doors;
 
-import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.KeyDoors.KeyDoorErrorBE;
-import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.KeyDoors.KeyDoorBE;
+import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.CodeDoors.CodeDoorBE;
+import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Util.DoorState;
 import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Util.TickableBE;
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlockEntities;
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlocks;
-import net.classic_akk.jaw_lab.Content.Items.LabItems;
-import net.classic_akk.jaw_lab.Content.Sound.LabSounds;
+import net.classic_akk.jaw_lab.Screen.CodeDoor.CodeDoorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -25,23 +25,22 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Vector;
 import java.util.stream.Stream;
 
-public class KeyDoorUp extends Block implements EntityBlock {
+public class CodeDoor extends Block implements EntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
+    public static final EnumProperty<DoorState> STATE = EnumProperty.create("state", DoorState.class);
 
     public static final VoxelShape NORTH = Stream.of(
             Block.box(6.2, 6, 6.9, 9.8, 7, 9.1),
@@ -105,14 +104,14 @@ public class KeyDoorUp extends Block implements EntityBlock {
             Block.box(7.5, 0, 1, 8.5, 15, 2)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
-    public KeyDoorUp(Properties properties) {
+    public CodeDoor(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(OPEN, Boolean.valueOf(false)));
+        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(STATE, DoorState.CLOSED));
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
-        if (!state.getValue(OPEN)) {
+        if (state.getValue(STATE) != DoorState.OPENED) {
             return switch (state.getValue(FACING)) {
                 case EAST -> EAST;
                 case SOUTH -> SOUTH;
@@ -130,14 +129,14 @@ public class KeyDoorUp extends Block implements EntityBlock {
         }
     }
 
-    public static boolean isOpen(BlockState state) {
-        return state.getValue(BlockStateProperties.OPEN);
+    public static EnumProperty<DoorState> getDoorState() {
+        return STATE;
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
-        builder.add(OPEN);
+        builder.add(STATE);
         super.createBlockStateDefinition(builder);
     }
 
@@ -157,59 +156,15 @@ public class KeyDoorUp extends Block implements EntityBlock {
         return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
     }
 
-    public void setData(BlockEntity be, int level){
-        if (be instanceof KeyDoorBE block) {
-
-            block.setClevel(level);
-            block.setChanged();
-        }
-    }
-
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (pState.getBlock() == LabBlocks.KEYDOOR_UP.get()) {
-                if (blockEntity instanceof KeyDoorBE keydoor) {
-                    Vector<Item> cardlist = new Vector<Item>();
-                    cardlist.add(0, null);
-                    cardlist.add(1, LabItems.KEYCARD1.get());
-                    cardlist.add(2, LabItems.KEYCARD2.get());
-                    cardlist.add(3, LabItems.KEYCARD3.get());
-                    cardlist.add(4, LabItems.KEYCARD4.get());
-                    cardlist.add(5, LabItems.KEYCARD5.get());
-
-                    if (pPlayer.getItemInHand(pHand).getItem().equals(LabItems.KEYDOOR_PROGRAMMER.get())) {
-                        keydoor.setClevel(keydoor.getCLevel() + 1);
-                        pPlayer.displayClientMessage(Component.nullToEmpty(new String(String.valueOf(keydoor.getCLevel()))), true);
-                        if (keydoor.getCLevel() >= 5) {
-                            keydoor.setClevel(0);
-                        }
-                    } else {
-                        if (keydoor.getCLevel() <= cardlist.indexOf(pPlayer.getItemInHand(pHand).getItem())) {
-                            //KeyDoorOpened_BE keydoor_opened = (KeyDoorOpened_BE) blockEntity;
-
-                            pLevel.playSound(null, pPos, LabSounds.KEYDOOR_OPEN.get(), SoundSource.BLOCKS, 0.5f, 1f);
-                            pLevel.setBlockAndUpdate(pPos, LabBlocks.KEYDOOR_UP.get().withPropertiesOf(pState).setValue(BlockStateProperties.OPEN, true));
-                            pLevel.setBlockAndUpdate(pPos.below(), LabBlocks.KEYDOOR_DOWN.get().withPropertiesOf(pState).setValue(BlockStateProperties.OPEN, true));
-                            BlockEntity newBlockEntity = pLevel.getBlockEntity(pPos);
-                            setData(newBlockEntity, keydoor.getCLevel());
-
-                        } else {
-                            pPlayer.displayClientMessage(Component.nullToEmpty(new String("Access Denied")), true);
-                            pLevel.playSound(null, pPos, LabSounds.KEYDOOR_ERROR.get(), SoundSource.BLOCKS, 0.5f, 1f);
-                            pLevel.setBlockAndUpdate(pPos, LabBlocks.KEYDOOR_UP_ERROR.get().withPropertiesOf(pState));
-
-                            BlockEntity newBlockEntity = pLevel.getBlockEntity(pPos);
-                            if (newBlockEntity instanceof KeyDoorErrorBE block) {
-                                block.setClevel(keydoor.getCLevel());
-                                block.setChanged();
-                            }
-                        }
-                    }
-                }
-            }
+            if (pState.getValue(CodeDoor.STATE) != DoorState.CLOSED) return InteractionResult.FAIL;
+            NetworkHooks.openScreen((ServerPlayer) pPlayer,
+                    new SimpleMenuProvider((id, inv, p) ->
+                            new CodeDoorMenu(id, inv,  pLevel.getBlockEntity(pPos), ContainerLevelAccess.create(pLevel, pPos)),
+                            Component.literal("CodeDoor")), pPos);
         }
         return InteractionResult.SUCCESS;
     }
@@ -226,7 +181,7 @@ public class KeyDoorUp extends Block implements EntityBlock {
 
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state){
-        return LabBlockEntities.KEY_DOOR_BE.get().create(pos,state);
+        return LabBlockEntities.CODE_DOOR_BE.get().create(pos,state);
     }
 
     @Nullable

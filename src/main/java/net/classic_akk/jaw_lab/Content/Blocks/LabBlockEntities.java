@@ -3,9 +3,7 @@ package net.classic_akk.jaw_lab.Content.Blocks;
 import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Barriers.BarrierGateBE;
 import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Barriers.BarrierGateOffBE;
 import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.CodeDoors.CodeDoorBE;
-import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.CodeDoors.CodeDoorErrorBE;
 import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.KeyDoors.KeyDoorBE;
-import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.KeyDoors.KeyDoorErrorBE;
 import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.KeycardProgrammatorBE;
 import net.classic_akk.jaw_lab.Lab;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -24,17 +22,11 @@ public class LabBlockEntities {
     //KeyDoors
     public static final RegistryObject<BlockEntityType<KeyDoorBE>> KEY_DOOR_BE =
             BLOCK_ENTITIES.register("key_door_be",
-                    ()-> BlockEntityType.Builder.of(KeyDoorBE::new, LabBlocks.KEYDOOR_UP.get()).build(null));
-    public static final RegistryObject<BlockEntityType<KeyDoorErrorBE>> KEY_DOOR_ERROR_BE =
-            BLOCK_ENTITIES.register("key_door_error_be",
-                    ()-> BlockEntityType.Builder.of(KeyDoorErrorBE::new, LabBlocks.KEYDOOR_UP_ERROR.get()).build(null));
+                    ()-> BlockEntityType.Builder.of(KeyDoorBE::new, LabBlocks.KEY_DOOR.get()).build(null));
     //CodeDoors
     public static final RegistryObject<BlockEntityType<CodeDoorBE>> CODE_DOOR_BE =
             BLOCK_ENTITIES.register("code_door_be",
-                    ()-> BlockEntityType.Builder.of(CodeDoorBE::new, LabBlocks.CODE_DOOR_UP.get()).build(null));
-    public static final RegistryObject<BlockEntityType<CodeDoorErrorBE>> CODE_DOOR_ERROR_BE =
-            BLOCK_ENTITIES.register("code_door_error_be",
-                    ()-> BlockEntityType.Builder.of(CodeDoorErrorBE::new, LabBlocks.CODE_DOOR_UP_ERROR.get()).build(null));
+                    ()-> BlockEntityType.Builder.of(CodeDoorBE::new, LabBlocks.CODE_DOOR.get()).build(null));
     //Gates
     public static final RegistryObject<BlockEntityType<BarrierGateBE>> BARRIER_GATE_BE =
             BLOCK_ENTITIES.register("barrier_gate_be",

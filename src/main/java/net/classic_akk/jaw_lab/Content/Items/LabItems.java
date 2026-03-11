@@ -16,7 +16,7 @@ public class LabItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Lab.MOD_ID);
 
-    public static final RegistryObject<Item> KEYDOOR_PROGRAMMER = ITEMS.register("keydoor_programmer",
+    public static final RegistryObject<Item> DOOR_PROGRAMMATOR = ITEMS.register("door_programmator",
             () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> KEYCARD1 = ITEMS.register("keycard1",
             () -> new KeyCard1(new Item.Properties().stacksTo(1)));
@@ -29,8 +29,7 @@ public class LabItems {
     public static final RegistryObject<Item> KEYCARD5 = ITEMS.register("keycard5",
             () -> new KeyCard5(new Item.Properties().stacksTo(1)));
 
-    //pickable items
-
+    //Pickable items
     public static final RegistryObject<Item> WIRE_CUTTERS = ITEMS.register("wire_cutters",
             () -> new WireCutters(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> CROWBAR = ITEMS.register("crowbar",
@@ -44,8 +43,7 @@ public class LabItems {
     public static final RegistryObject<Item> RED_STAMP = ITEMS.register("red_stamp",
             () -> new Item(new Item.Properties().stacksTo(1)));
 
-    //sector
-
+    //Sector
     public static final RegistryObject<Item> S_DELTA = ITEMS.register("s_delta",
             () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> S_IOTA = ITEMS.register("s_iota",

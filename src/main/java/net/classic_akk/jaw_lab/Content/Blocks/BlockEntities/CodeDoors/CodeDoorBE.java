@@ -1,32 +1,31 @@
 package net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.CodeDoors;
 
+import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Util.DoorState;
 import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Util.TickableBE;
-import net.classic_akk.jaw_lab.Content.Blocks.Blocks.KeyDoors.KeyDoorUp;
+import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Doors.CodeDoor;
+import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Doors.KeyDoor;
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlockEntities;
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlocks;
 import net.classic_akk.jaw_lab.Content.Sound.LabSounds;
-import net.classic_akk.jaw_lab.Screen.KCPMain.KeycardProgrammatorMainMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import org.jetbrains.annotations.Nullable;
 
 public class CodeDoorBE extends BlockEntity implements TickableBE {
     private int ticks;
     private int timer;
-    private String cPasscode;
+    private String cPasscode = "";
 
     public CodeDoorBE(BlockPos pos, BlockState state) {
         super(LabBlockEntities.CODE_DOOR_BE.get(), pos, state);
+    }
+
+    public void resetTick() {
+        ticks = 0;
     }
 
     public void setPasscode(String cPasscode){
@@ -38,13 +37,6 @@ public class CodeDoorBE extends BlockEntity implements TickableBE {
         return cPasscode;
     }
 
-    public void setData(BlockEntity be, String cPasscode){
-        if (be instanceof CodeDoorErrorBE block) {
-            block.setPasscode(cPasscode);
-            block.setChanged();
-        }
-    }
- /** Cannot invoke "String.isEmpty()" because "pData" is null */
     @Override
     protected void saveAdditional(CompoundTag tag){
         super.saveAdditional(tag);
@@ -59,29 +51,34 @@ public class CodeDoorBE extends BlockEntity implements TickableBE {
 
     @Override
     public void tick() {
-        if (this.level == null || this.level.isClientSide()) {
-            return;
+        if (level == null || level.isClientSide()) return;
+        BlockPos pos = getBlockPos();
+        BlockState state = level.getBlockState(getBlockPos());
+        int x = worldPosition.getX(); int y = worldPosition.getY(); int z = worldPosition.getZ();
+
+        if (state.getValue(CodeDoor.STATE) == DoorState.OPENED) {
+            if (ticks++ % 20 == 0) {
+                level.playSound(null, x, y, z, LabSounds.KEYDOOR_TICK.get(), SoundSource.AMBIENT, 0.5f, 1f);
+                timer++;
+                if (timer == 4) {
+                    timer = 0;
+                    level.playSound(null, x, y, z, LabSounds.KEYDOOR_CLOSE.get(), SoundSource.AMBIENT, 2f, 1f);
+                    for (int i = 0; i < 20; i++) level.addAlwaysVisibleParticle(ParticleTypes.SMOKE, x, y, z, 0.1, 0.1, 0.1);
+
+                    level.setBlockAndUpdate(pos, state.setValue(CodeDoor.STATE, DoorState.ERROR));
+                    level.setBlockAndUpdate(pos.below(), LabBlocks.KEYDOOR_DOWN.get().withPropertiesOf(state.setValue(CodeDoor.STATE, DoorState.CLOSED)));
+                    resetTick();
+                }
+            }
         }
-        BlockState state = level.getBlockState(this.getBlockPos());
-        BlockEntity blockEntity = this.level.getBlockEntity(this.worldPosition);
-
-        if (!KeyDoorUp.isOpen(state)) return;
-        if (this.ticks++ % 20 == 0) {
-            this.level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), LabSounds.KEYDOOR_TICK.get(), SoundSource.AMBIENT, 0.5f, 1f);
-            timer++;
-
-            if (timer == 4) {
-                timer = 0;
-                if (blockEntity instanceof CodeDoorBE keydoor) {
-                    level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), LabSounds.KEYDOOR_CLOSE.get(), SoundSource.AMBIENT, 2f, 1f);
-                    for (int i = 0; i < 20; i++) {
-                        this.level.addAlwaysVisibleParticle(ParticleTypes.SMOKE, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), 0.1, 0.1, 0.1);
-                    }
-                    this.level.setBlockAndUpdate(this.getBlockPos(), LabBlocks.CODE_DOOR_UP_ERROR.get().withPropertiesOf(state));
-                    this.level.setBlockAndUpdate(this.getBlockPos().below(), LabBlocks.KEYDOOR_DOWN.get().withPropertiesOf(state).setValue(BlockStateProperties.OPEN, false));
-
-                    BlockEntity newBlockEntity = this.level.getBlockEntity(this.worldPosition);
-                    setData(newBlockEntity, keydoor.getPasscode());
+        if (state.getValue(CodeDoor.STATE) == DoorState.ERROR) {
+            if (ticks++ % 20 == 0) {
+                timer++;
+                if (timer == 2) {
+                    timer = 0;
+                    level.playSound(null, x, y, z, LabSounds.KEYDOOR_ERROR.get(), SoundSource.AMBIENT, 0.5f, 0f);
+                    level.setBlockAndUpdate(pos, state.setValue(CodeDoor.STATE, DoorState.CLOSED));
+                    for (int i = 0; i < 20; i++) level.addAlwaysVisibleParticle(ParticleTypes.SMOKE, x, y, z, 0.1, 0.1, 0.1);
                 }
             }
         }

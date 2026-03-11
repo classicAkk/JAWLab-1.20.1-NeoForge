@@ -1,5 +1,6 @@
-package net.classic_akk.jaw_lab.Content.Blocks.Blocks.KeyDoors;
+package net.classic_akk.jaw_lab.Content.Blocks.Blocks.Doors;
 
+import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Util.DoorState;
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,8 +18,8 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -28,7 +29,7 @@ import java.util.stream.Stream;
 
 public class KeyDoorDown extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
+    public static final EnumProperty<DoorState> STATE = EnumProperty.create("state", DoorState.class);
 
     public static final VoxelShape NORTH = Stream.of(
             Block.box(0, 0, 6.5, 1, 16, 9.5),
@@ -75,12 +76,12 @@ public class KeyDoorDown extends Block {
     public KeyDoorDown(Properties properties) {
         super(properties);
 
-        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(OPEN, Boolean.FALSE));
+        this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(STATE, DoorState.CLOSED));
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
-        if (!state.getValue(OPEN)) {
+        if (state.getValue(STATE) != DoorState.OPENED) {
             return switch (state.getValue(FACING)) {
                 case EAST -> EAST;
                 case SOUTH -> SOUTH;
@@ -105,7 +106,7 @@ public class KeyDoorDown extends Block {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
-        builder.add(OPEN);
+        builder.add(STATE);
         super.createBlockStateDefinition(builder);
     }
 
@@ -121,15 +122,13 @@ public class KeyDoorDown extends Block {
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        level.setBlock(pos.above(), LabBlocks.KEYDOOR_UP.get().withPropertiesOf(state).setValue(OPEN, Boolean.FALSE), 3);
+        level.setBlock(pos.above(), LabBlocks.KEY_DOOR.get().withPropertiesOf(state).setValue(STATE, DoorState.CLOSED), 3);
     }
 
     @Override
     public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-        if (level.getBlockState(pos.above()).getBlock() == LabBlocks.KEYDOOR_UP.get()
-                || level.getBlockState(pos.above()).getBlock() == LabBlocks.KEYDOOR_UP_ERROR.get()
-                || level.getBlockState(pos.above()).getBlock() == LabBlocks.CODE_DOOR_UP.get()
-                || level.getBlockState(pos.above()).getBlock() == LabBlocks.CODE_DOOR_UP_ERROR.get()) {
+        if (level.getBlockState(pos.above()).getBlock() == LabBlocks.KEY_DOOR.get()
+                || level.getBlockState(pos.above()).getBlock() == LabBlocks.CODE_DOOR.get()) {
             BlockPos above = pos.above();
             level.destroyBlock(above, false);
         }

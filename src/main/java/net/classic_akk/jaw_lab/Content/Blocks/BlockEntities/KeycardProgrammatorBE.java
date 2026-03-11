@@ -35,7 +35,7 @@ public class KeycardProgrammatorBE extends BlockEntity implements MenuProvider {
                     stack.getItem() == LabItems.KEYCARD3.get() ||
                     stack.getItem() == LabItems.KEYCARD4.get() ||
                     stack.getItem() == LabItems.KEYCARD5.get() ||
-                    stack.getItem() == LabItems.KEYDOOR_PROGRAMMER.get();
+                    stack.getItem() == LabItems.DOOR_PROGRAMMATOR.get();
         }
     };
 

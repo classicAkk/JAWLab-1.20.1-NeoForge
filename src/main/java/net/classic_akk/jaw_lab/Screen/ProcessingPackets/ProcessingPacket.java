@@ -1,8 +1,10 @@
 package net.classic_akk.jaw_lab.Screen.ProcessingPackets;
 
 import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.CodeDoors.CodeDoorBE;
-import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.CodeDoors.CodeDoorErrorBE;
+import net.classic_akk.jaw_lab.Content.Blocks.BlockEntities.Util.DoorState;
+import net.classic_akk.jaw_lab.Content.Blocks.Blocks.Doors.CodeDoor;
 import net.classic_akk.jaw_lab.Content.Blocks.LabBlocks;
+import net.classic_akk.jaw_lab.Content.Interactions.CodeDoorInteractions;
 import net.classic_akk.jaw_lab.Content.Interactions.KeycardInteractions;
 import net.classic_akk.jaw_lab.Content.Interactions.NetworkInteractions;
 import net.classic_akk.jaw_lab.Content.Network.NetworkRole;
@@ -86,10 +88,12 @@ public class ProcessingPacket {
             ProcessingPacket.serverLevel = (ServerLevel) level;
         }
     }
-    public ProcessingPacket(Level level, BlockEntity blockEntity, String type) {
+    public ProcessingPacket(Level level, BlockEntity blockEntity, String type, String parameter, Player player) {
         ProcessingPacket.level = level;
         ProcessingPacket.blockEntity = blockEntity;
         ProcessingPacket.type = type;
+        ProcessingPacket.parameter = parameter;
+        ProcessingPacket.player = player;
     }
 
     public void encode(FriendlyByteBuf buf) {
@@ -115,7 +119,7 @@ public class ProcessingPacket {
                     case("resetLevel"): {KeycardInteractions.resetLevel(MainMenu, 36); break;}
                     case("addNetwork"): {KeycardInteractions.addNetwork(MainMenu, level, 36, parameter, player); break;}
                     case("removeNetwork"): {KeycardInteractions.removeNetwork(MainMenu, 36); break;}
-                    default: {System.out.print("Case not found\n"); break;}
+                    default: {System.out.print("Jaw Lab: net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
                 }
             }
             if (serverPlayer.containerMenu instanceof KeycardProgrammatorNetworkMenu NetworkMenu) {
@@ -129,38 +133,20 @@ public class ProcessingPacket {
                     case("increaseUserLevel"): {NetworkInteractions.increaseUserLevel(serverLevel, networkName, player, parameter); break;}
                     case("decreaseUserLevel"): {NetworkInteractions.decreaseUserLevel(serverLevel, networkName, player, parameter); break;}
                     case("setRole"): {NetworkInteractions.setRole(serverLevel, networkName, player, parameter, role); break;}
-                    default: {System.out.print("Case not found\n"); break;}
+                    default: {System.out.print("Jaw Lab: net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
                 }
             }
             if (serverPlayer.containerMenu instanceof KeycardProgrammatorCopyMenu CopyMenu) {
                 switch(type) {
                     case("copyCard"): {KeycardInteractions.copyCard(CopyMenu, 36); break;}
-                    default: {System.out.print("Case not found\n"); break;}
+                    default: {System.out.print("Jaw Lab: net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
                 }
             }
             if (serverPlayer.containerMenu instanceof CodeDoorMenu CodeDoorMenu) {
                 switch(type) {
-                    case("openDoor"): {
-                        BlockPos worldPosition = blockEntity.getBlockPos();
-                        BlockState state = level.getBlockState(worldPosition);
-                        if (blockEntity instanceof CodeDoorBE codeDoorBE) {
-                            level.playSound(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), LabSounds.KEYDOOR_CLOSE.get(), SoundSource.AMBIENT, 2f, 1f);
-                            for (int i = 0; i < 20; i++) {
-                                level.addAlwaysVisibleParticle(ParticleTypes.SMOKE, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), 0.1, 0.1, 0.1);
-                            }
-                            level.setBlockAndUpdate(worldPosition, LabBlocks.CODE_DOOR_UP_ERROR.get().withPropertiesOf(state));
-                            level.setBlockAndUpdate(worldPosition.below(), LabBlocks.KEYDOOR_DOWN.get().withPropertiesOf(state).setValue(BlockStateProperties.OPEN, true));
-
-                            BlockEntity newBlockEntity = level.getBlockEntity(worldPosition);
-                            if (newBlockEntity instanceof CodeDoorErrorBE block) {
-                                System.out.print("Success");
-                                block.setPasscode(codeDoorBE.getPasscode());
-                                block.setChanged();
-                            }
-                        }
-                        break;
-                    }
-                    default: {System.out.print("Case not found\n"); break;}
+                    case("openDoor"): {CodeDoorInteractions.setDoor(blockEntity, level, player);break;}
+                    case("setCode"): {CodeDoorInteractions.setCode(blockEntity, parameter, player);break;}
+                    default: {System.out.print("Jaw Lab: net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
                 }
             }
         });
