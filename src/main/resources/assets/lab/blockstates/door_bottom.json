@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north,state=closed": {"model":  "lab:block/doors/bottom/door_bottom_closed"},
+    "facing=north,state=error": {"model":  "lab:block/doors/bottom/door_bottom_closed"},
+    "facing=north,state=opened": {"model":  "lab:block/doors/bottom/door_bottom_opened"},
+
+    "facing=west,state=closed": {"model":  "lab:block/doors/bottom/door_bottom_closed","y": 90},
+    "facing=west,state=error": {"model":  "lab:block/doors/bottom/door_bottom_closed","y": 90},
+    "facing=west,state=opened": {"model":  "lab:block/doors/bottom/door_bottom_opened","y": 90},
+
+    "facing=south,state=closed": {"model":  "lab:block/doors/bottom/door_bottom_closed","y": 180},
+    "facing=south,state=error": {"model":  "lab:block/doors/bottom/door_bottom_closed","y": 180},
+    "facing=south,state=opened": {"model":  "lab:block/doors/bottom/door_bottom_opened","y": 180},
+
+    "facing=east,state=closed": {"model":  "lab:block/doors/bottom/door_bottom_closed","y": 270},
+    "facing=east,state=error": {"model":  "lab:block/doors/bottom/door_bottom_closed","y": 270},
+    "facing=east,state=opened": {"model":  "lab:block/doors/bottom/door_bottom_opened","y": 270}
+  }
+}

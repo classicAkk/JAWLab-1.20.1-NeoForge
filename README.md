@@ -1,43 +1,17 @@
+<p align="center"><img src="./src/main/resources/assets/lab/readMd/JAW_Logo.png" alt="Logo" width="200"></p>
+<h1 align="center">Just A Wyverns Lab  <br>
+	<a href="https://r.createmod.net/p"><img src="https://img.shields.io/github/stars/classicAkk/JAWLab-1.20.1-NeoForge?label=Stars&style=flat&logo=github" alt="Github"></a>
+	<a href="https://r.createmod.net/d"><img src="https://img.shields.io/discord/1100722019491917834?color=5865F2&label=Discord&style=flat" alt="Discord"></a>
+	<a href="https://r.createmod.net/cf"><img src="https://img.shields.io/curseforge/dt/{ID}?logo=curseforge&label=&suffix=%20&style=flat&color=242629&labelColor=F16436&logoColor=1C1C1C" alt="CurseForge"></a>
+    <a href="https://r.createmod.net/mr"><img src="https://img.shields.io/modrinth/dt/jaw-lab?logo=modrinth&label=&suffix=%20&style=flat&color=242629&labelColor=5CA424&logoColor=1C1C1C" alt="Modrinth"></a>
+    <br><br>
+</h1>
 
-Installation information
-=======
+<p>Welcome to JAW Lab, a mod offering a variety of useful laboratory blocks: code doors, key doors and keycard with network connections.</p>
+<p>Also, mod adds many decoration blocks and some interactable items.</p>
+<p>&nbsp;</p>
+<p align="center"><a href="https://github.com/classicAkk/JAWLab-1.20.1-NeoForge/issues"><img src="https://i.imgur.com/qPmjSXy.png" width="160" /></a> <a href="https://discord.gg/HkwSrBhKU3"><img src="https://i.imgur.com/uf6V9ZX.png" width="160" /></a> <a href="https://github.com/Creators-of-Create/Create/wiki/Supporting-the-Project"><img src="https://i.imgur.com/fHQ45KR.png" width="227" /></a></p>
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions at [github](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
-
-Once you have your clone, you can initialize your copy.
-
-Setup Process:
---------
-
-Step 1: Open your command-line and browse to the folder where you extracted cloned your copy of this repository to.
-
-Step 2: You're left with a choice.
-If you prefer to use Eclipse:
-1. Run the following command: `gradlew genEclipseRuns` (`./gradlew genEclipseRuns` if you are on Mac/Linux)
-2. Open Eclipse, Import > Existing Gradle Project > Select Folder 
-   or run `gradlew eclipse` to generate the project.
-
-If you prefer to use IntelliJ:
-1. Open IDEA, and import project.
-2. Select your build.gradle file and have it import.
-3. Run the following command: `gradlew genIntellijRuns` (`./gradlew genIntellijRuns` if you are on Mac/Linux)
-4. Refresh the Gradle Project in IDEA if required.
-
-If at any point you are missing libraries in your IDE, or you've run into problems you can 
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
-
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license, if you do not agree with it you can change your mapping names to other crowdsourced names in your 
-build.gradle. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
-
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+<h1></h1>
+<h4 align="center">Find out more about JAW Mods on my <a href="https://www.curseforge.com/minecraft/mc-mods/create">Curseforge</a> or <a href="https://modrinth.com/user/classic_akk">Modrinth</a> Page</h4>
+<h4 align="center">Fabric port currently not available :(</h4>
