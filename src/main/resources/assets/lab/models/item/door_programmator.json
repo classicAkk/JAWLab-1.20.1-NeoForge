@@ -1,3 +1,6 @@
 {
-	"parent": "lab:item/door_programmator"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lab:item/door_programmator"
+  }
 }

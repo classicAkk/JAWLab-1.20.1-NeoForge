@@ -4,13 +4,13 @@
       "model":  "lab:block/keycard_programmator"
     },
     "facing=west": {
-      "model":  "lab:block/keycard_programmator","y": 90
+      "model":  "lab:block/keycard_programmator","y": 270
     },
     "facing=south": {
       "model":  "lab:block/keycard_programmator","y": 180
     },
     "facing=east": {
-      "model":  "lab:block/keycard_programmator","y": 270
+      "model":  "lab:block/keycard_programmator","y": 90
     }
   }
 }

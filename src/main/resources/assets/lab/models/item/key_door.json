@@ -1,3 +1,3 @@
 {
-  "parent": "lab:block/keydoors/keydoor_up_closed"
+  "parent": "lab:block/doors/key/key_door_closed"
 }
