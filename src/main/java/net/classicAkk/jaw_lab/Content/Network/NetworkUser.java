@@ -8,9 +8,6 @@ public class NetworkUser {
     private final UUID uuid;
     private final String username;
     private NetworkRole role;
-
-
-
     private int accessLevel;
 
     public NetworkUser(UUID uuid, String username, NetworkRole role, int accessLevel) {

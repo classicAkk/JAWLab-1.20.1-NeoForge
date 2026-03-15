@@ -4,6 +4,7 @@
     "sounds": [
       {
         "name": "lab:door_error",
+        "attenuation_distance": 16,
         "stream": false
       }
     ]
@@ -13,6 +14,7 @@
     "sounds": [
       {
         "name": "lab:door_tick",
+        "attenuation_distance": 16,
         "stream": false
       }
     ]
@@ -22,6 +24,7 @@
     "sounds": [
       {
         "name": "lab:door_open",
+        "attenuation_distance": 16,
         "stream": false
       }
     ]

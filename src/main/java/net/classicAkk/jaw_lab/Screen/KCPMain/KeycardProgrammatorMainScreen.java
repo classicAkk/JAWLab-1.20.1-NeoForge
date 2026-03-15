@@ -25,6 +25,7 @@ public class KeycardProgrammatorMainScreen extends AbstractContainerScreen<Keyca
     Player player;
     Level level = KeycardProgrammatorMainMenu.getServerLevel();
     BlockPos pos = menu.blockEntity.getBlockPos();
+    String network;
     private EditBox field;
 
     private final ResourceLocation TEXTURE =
@@ -63,6 +64,7 @@ public class KeycardProgrammatorMainScreen extends AbstractContainerScreen<Keyca
         super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);
         renderTextElements(guiGraphics);
+        network = KeycardInteractions.getCardNetwork(menu, 36);
 
 
         if (field.isFocused() && minecraft.player != null) {
@@ -76,7 +78,7 @@ public class KeycardProgrammatorMainScreen extends AbstractContainerScreen<Keyca
     private void renderTextElements(GuiGraphics guiGraphics){
         String owner = KeycardInteractions.getCardOwner(menu, 36);
         String uuid = KeycardInteractions.getCardUUID(menu, 36);
-        String network = KeycardInteractions.getCardNetwork(menu, 36);
+        //String network = KeycardInteractions.getCardNetwork(menu, 36);
         int cLevel = KeycardInteractions.getCardLevel(menu, 36);
         guiGraphics.drawString(this.font, "Owner:", leftPos+62, topPos+16, 0xFFFFFF);
         guiGraphics.drawString(this.font, owner, leftPos+96, topPos+16, KeycardInteractions.getColor(owner));
@@ -124,16 +126,12 @@ public class KeycardProgrammatorMainScreen extends AbstractContainerScreen<Keyca
         this.addRenderableWidget( //add_level button (card level)
                 new GuiButton(TEXTURE, leftPos+147, topPos+53, 10, 10, 92, 172, 188, Component.empty(),
                         button -> {
-                            if (!field.getValue().isEmpty()) {
-                                LabPackets.INSTANCE.sendToServer(new ProcessingPacket(level, player, field.getValue(), "increaseLevel"));
-                            }
+                    LabPackets.INSTANCE.sendToServer(new ProcessingPacket(level, player, network, "increaseLevel"));
                         }));
         this.addRenderableWidget( //decrease_level button (card level)
                 new GuiButton(TEXTURE, leftPos+159, topPos+53, 10, 10, 104, 172, 188, Component.empty(),
                         button -> {
-                            if (!field.getValue().isEmpty()) {
-                                LabPackets.INSTANCE.sendToServer(new ProcessingPacket(level, player, field.getValue(), "decreaseLevel"));
-                            }
+                    LabPackets.INSTANCE.sendToServer(new ProcessingPacket(level, player, network, "decreaseLevel"));
                         }));
 
         this.addRenderableWidget( //next button (mode)

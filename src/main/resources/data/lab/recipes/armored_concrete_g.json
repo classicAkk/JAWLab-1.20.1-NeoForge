@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:green_dye"
+    },
+    "W": {
+      "item": "lab:armored_concrete"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "W#W",
+    "WWW"
+  ],
+  "result": {
+    "count": 8,
+    "item": "lab:armored_concrete_g"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lab:block/zones/orange/orange_up"
+    }
+  }
+}

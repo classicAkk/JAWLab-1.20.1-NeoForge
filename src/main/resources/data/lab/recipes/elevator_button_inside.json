@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:stone_button"
+    },
+    "W": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "pattern": [
+    "W",
+    "S",
+    "W"
+  ],
+  "result": {
+    "count": 1,
+    "item": "lab:elevator_inside"
+  },
+  "show_notification": true
+}

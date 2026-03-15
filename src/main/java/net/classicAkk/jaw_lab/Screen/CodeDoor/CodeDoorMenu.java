@@ -1,6 +1,6 @@
 package net.classicAkk.jaw_lab.Screen.CodeDoor;
 
-import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.CodeDoors.CodeDoorBE;
+import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Doors.CodeDoorBE;
 import net.classicAkk.jaw_lab.Screen.LabMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 public class CodeDoorMenu extends AbstractContainerMenu {
     public static CodeDoorBE blockEntity;
     private static Player player;
-    private ContainerLevelAccess access;
     private static Level level;
 
     public CodeDoorMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
@@ -24,7 +23,6 @@ public class CodeDoorMenu extends AbstractContainerMenu {
     public CodeDoorMenu(int id, Inventory inv, BlockEntity entity, ContainerLevelAccess access) {
         super(LabMenuTypes.CODE_DOOR.get(), id);
         blockEntity = ((CodeDoorBE) entity);
-        this.access = access;
         player = inv.player;
         if (!blockEntity.getLevel().isClientSide()) {
             level = blockEntity.getLevel();

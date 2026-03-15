@@ -25,7 +25,7 @@ public class BarrierGateBE extends BlockEntity implements TickableBE {
         Direction dir = this.level.getBlockState(this.worldPosition).getValue(HorizontalDirectionalBlock.FACING);
         Direction dir2;
 
-        for (int i = 1; i < 7; i++) {
+        for (int i = 1; i < 16; i++) {
             if (this.level.getBlockState(positioner(dir, i)).getBlock() == LabBlocks.BARRIER_GATE.get()){
                 BlockEntity oppositeBlockEntity = this.level.getBlockEntity(positioner(dir, i));
                 dir2 = this.level.getBlockState(positioner(dir, i)).getValue(HorizontalDirectionalBlock.FACING);

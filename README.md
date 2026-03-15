@@ -1,4 +1,4 @@
-<p align="center"><img src="./src/main/resources/assets/lab/readMd/JAW_Logo.png" alt="Logo" width="200"></p>
+<p align="center"><img src="./src/main/resources/assets/lab/readMd/JAW_Lab.png" alt="Logo" width="250"></p>
 <h1 align="center">Just A Wyverns Lab  <br>
 	<a href="https://r.createmod.net/p"><img src="https://img.shields.io/github/stars/classicAkk/JAWLab-1.20.1-NeoForge?label=Stars&style=flat&logo=github" alt="Github"></a>
 	<a href="https://r.createmod.net/d"><img src="https://img.shields.io/discord/1100722019491917834?color=5865F2&label=Discord&style=flat" alt="Discord"></a>
@@ -13,5 +13,5 @@
 <p align="center"><a href="https://github.com/classicAkk/JAWLab-1.20.1-NeoForge/issues"><img src="https://i.imgur.com/qPmjSXy.png" width="160" /></a> <a href="https://discord.gg/HkwSrBhKU3"><img src="https://i.imgur.com/uf6V9ZX.png" width="160" /></a> <a href="https://github.com/Creators-of-Create/Create/wiki/Supporting-the-Project"><img src="https://i.imgur.com/fHQ45KR.png" width="227" /></a></p>
 
 <h1></h1>
-<h4 align="center">Find out more about JAW Mods on my <a href="https://www.curseforge.com/minecraft/mc-mods/create">Curseforge</a> or <a href="https://modrinth.com/user/classic_akk">Modrinth</a> Page</h4>
+<h4 align="center">Find out more about JAW Mods on my <a href="https://www.curseforge.com/members/classic_akk_/projects">Curseforge</a> or <a href="https://modrinth.com/user/classic_akk">Modrinth</a> Page</h4>
 <h4 align="center">Fabric port currently not available :(</h4>

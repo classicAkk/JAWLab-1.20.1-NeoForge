@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:orange_dye"
+    },
+    "W": {
+      "item": "lab:armored_concrete"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "WWW",
+    "W#W"
+  ],
+  "result": {
+    "count": 8,
+    "item": "lab:orange_down"
+  },
+  "show_notification": true
+}

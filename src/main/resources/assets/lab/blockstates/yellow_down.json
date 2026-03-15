@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lab:block/zones/yellow/yellow_down"
+    }
+  }
+}

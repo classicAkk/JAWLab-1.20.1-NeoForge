@@ -8,5 +8,6 @@ public enum NetworkPermission {
     CHANGE_CARD_LEVEL,
     ADD_NETWORK,
     CHANGE_ROLE,
-    DELETE_NETWORK
+    DELETE_NETWORK,
+    CHANGE_DOORS
 }

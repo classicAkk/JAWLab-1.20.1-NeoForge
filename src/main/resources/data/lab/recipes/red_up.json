@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:red_dye"
+    },
+    "W": {
+      "item": "lab:armored_concrete"
+    }
+  },
+  "pattern": [
+    "W#W",
+    "WWW",
+    "WWW"
+  ],
+  "result": {
+    "count": 8,
+    "item": "lab:red_up"
+  },
+  "show_notification": true
+}

@@ -33,7 +33,7 @@ public class LabItems {
     public static final RegistryObject<Item> WIRE_CUTTERS = ITEMS.register("wire_cutters",
             () -> new WireCutters(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> CROWBAR = ITEMS.register("crowbar",
-            () -> new SwordItem(LabToolTiers.METAL, 3, 1, new Item.Properties()));
+            () -> new SwordItem(LabToolTiers.METAL, 5, 0.1f, new Item.Properties()));
     public static final RegistryObject<Item> DUCT_TAPE = ITEMS.register("duct_tape",
             () -> new DuctTape(new Item.Properties()));
     public static final RegistryObject<Item> FUSE = ITEMS.register("fuse",
@@ -43,17 +43,6 @@ public class LabItems {
     public static final RegistryObject<Item> RED_STAMP = ITEMS.register("red_stamp",
             () -> new Item(new Item.Properties().stacksTo(1)));
 
-    //Sector
-    public static final RegistryObject<Item> S_DELTA = ITEMS.register("s_delta",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> S_IOTA = ITEMS.register("s_iota",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> S_KAPPA = ITEMS.register("s_kappa",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> S_PSI = ITEMS.register("s_psi",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> S_TAU = ITEMS.register("s_tau",
-            () -> new Item(new Item.Properties().stacksTo(1)));
     /*
     public static final RegistryObject<Item> JAW_BRACELET = ITEMS.register("JAW_BRACELET",
             () -> new Item(new Item.Properties()));
