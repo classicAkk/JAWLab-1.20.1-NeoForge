@@ -71,6 +71,7 @@ public class EmptySheetBlock extends Block {
     }
 
 
+    /*
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
@@ -86,4 +87,5 @@ public class EmptySheetBlock extends Block {
         }
         return InteractionResult.SUCCESS;
     }
+     */
 }

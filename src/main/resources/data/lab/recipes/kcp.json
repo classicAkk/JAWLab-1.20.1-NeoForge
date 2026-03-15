@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "Y": {
+      "item": "minecraft:comparator"
+    },
+    "U": {
+      "item": "minecraft:redstone_torch"
+    },
+    "#": {
+      "item": "minecraft:redstone"
+    },
+    "W": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "pattern": [
+    "YUY",
+    "W#W",
+    "WWW"
+  ],
+  "result": {
+    "count": 1,
+    "item": "lab:keycard_programmator"
+  },
+  "show_notification": true
+}

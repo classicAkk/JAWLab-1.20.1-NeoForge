@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:light_weighted_pressure_plate"
+    },
+    "C": {
+      "tag": "forge:ingots/copper"
+    },
+    "Y": {
+      "item": "minecraft:redstone"
+    },
+    "D": {
+      "item": "minecraft:red_dye"
+    },
+    "W": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "pattern": [
+    "WSW",
+    "CDC",
+    "WYW"
+  ],
+  "result": {
+    "count": 1,
+    "item": "lab:keycard4"
+  },
+  "show_notification": true
+}

@@ -1,21 +1,31 @@
 package net.classicAkk.jaw_lab.Content.Blocks.Blocks.Doors;
 
-import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.KeyDoors.KeyDoorBE;
+import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Doors.KeyDoorBE;
 import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Util.DoorState;
 import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Util.TickableBE;
 import net.classicAkk.jaw_lab.Content.Blocks.LabBlockEntities;
 import net.classicAkk.jaw_lab.Content.Blocks.LabBlocks;
 import net.classicAkk.jaw_lab.Content.Items.LabItems;
+import net.classicAkk.jaw_lab.Content.Items.custom.item.keycards.KeyCard1;
 import net.classicAkk.jaw_lab.Content.Sound.LabSounds;
+import net.classicAkk.jaw_lab.Screen.CodeDoor.CodeDoorMenu;
+import net.classicAkk.jaw_lab.Screen.DoorProgrammator.CodeDoor.DoorProgrammatorCodeMenu;
+import net.classicAkk.jaw_lab.Screen.DoorProgrammator.KeyDoor.DoorProgrammatorKeyMenu;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -35,6 +45,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -164,37 +175,50 @@ public class KeyDoor extends Block implements EntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (pState.getBlock() == LabBlocks.KEY_DOOR.get()) {
-                if (blockEntity instanceof KeyDoorBE keydoor) {
-                    Vector<Item> cardList = new Vector<Item>();
-                    cardList.add(0, null);
-                    cardList.add(1, LabItems.KEYCARD1.get());
-                    cardList.add(2, LabItems.KEYCARD2.get());
-                    cardList.add(3, LabItems.KEYCARD3.get());
-                    cardList.add(4, LabItems.KEYCARD4.get());
-                    cardList.add(5, LabItems.KEYCARD5.get());
+            if (pLevel.getBlockEntity(pPos) instanceof KeyDoorBE keydoor) {
+                ItemStack stack = pPlayer.getItemInHand(pHand);
+                DoorState state = pState.getValue(KeyDoor.STATE);
+                CompoundTag tag = stack.getOrCreateTag();
+                int cLevel = tag.getInt("cLevel");
+                String cNetwork = tag.getString("cNetwork");
+                int x = pPos.getX(); int y = pPos.getY(); int z = pPos.getZ();
 
-                    if (pPlayer.getItemInHand(pHand).getItem().equals(LabItems.DOOR_PROGRAMMATOR.get())) {
-                        keydoor.setClevel(keydoor.getCLevel() + 1);
-                        pPlayer.displayClientMessage(Component.literal(String.valueOf(keydoor.getCLevel())).withStyle(ChatFormatting.DARK_AQUA), true);
-                        if (keydoor.getCLevel() >= 5) {
-                            keydoor.setClevel(0);
-                        }
-                    } else {
-                        if (pState.getValue(KeyDoor.STATE) != DoorState.CLOSED) return InteractionResult.FAIL;
-                        if (keydoor.getCLevel() <= cardList.indexOf(pPlayer.getItemInHand(pHand).getItem())) {
-                            pLevel.playSound(null, pPos, LabSounds.KEYDOOR_OPEN.get(), SoundSource.BLOCKS, 0.5f, 1f);
-                            pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, DoorState.OPENED));
-                            pLevel.setBlockAndUpdate(pPos.below(), LabBlocks.DOOR_BOTTOM.get().withPropertiesOf(pState.setValue(STATE, DoorState.OPENED)));
-                            keydoor.resetTick();
-                        } else {
-                            pPlayer.displayClientMessage(Component.literal("Access Denied").withStyle(ChatFormatting.RED), true);
-                            pLevel.playSound(null, pPos, LabSounds.KEYDOOR_ERROR.get(), SoundSource.BLOCKS, 0.5f, 1f);
-                            pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, DoorState.ERROR));
-                            keydoor.resetTick();
-                        }
-                    }
+                //System.out.print(keydoor.getNetwork() + " " + cNetwork + " - " + keydoor.getCLevel() + " " + cLevel + "\n");
+                if ((keydoor.getCLevel() > cLevel || (!cNetwork.equals(keydoor.getNetwork()) && cNetwork.equals("null")) || stack.isEmpty())
+                        && state != DoorState.OPENED && state != DoorState.ERROR) {
+                    pPlayer.displayClientMessage(Component.literal("Access Denied").withStyle(ChatFormatting.RED), true);
+                    pLevel.playSound(null, pPos, LabSounds.KEYDOOR_ERROR.get(), SoundSource.BLOCKS, 0.5f, 1f);
+                    pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, DoorState.ERROR));
+                    keydoor.resetTick();
+                    return InteractionResult.FAIL;
+                }
+                if (pPlayer.getItemInHand(pHand).getItem().equals(LabItems.DOOR_PROGRAMMATOR.get()) && pPlayer.isShiftKeyDown()) {
+                    pPlayer.displayClientMessage(Component.literal("Successfully pasted settings").withStyle(ChatFormatting.GREEN), true);
+                    //pass for now; Paste the settings from keydoorProgrammator
+                    return InteractionResult.SUCCESS;
+                }
+                if (pPlayer.getItemInHand(pHand).getItem().equals(LabItems.DOOR_PROGRAMMATOR.get()) && !pPlayer.isShiftKeyDown()) {
+                    NetworkHooks.openScreen((ServerPlayer) pPlayer,
+                            new SimpleMenuProvider((id, inv, p) ->
+                                    new DoorProgrammatorKeyMenu(id, inv,  pLevel.getBlockEntity(pPos), ContainerLevelAccess.create(pLevel, pPos)),
+                                    Component.literal("CodeDoor")), pPos);
+                    return InteractionResult.SUCCESS;
+                }
+                if (state == DoorState.CLOSED) {
+                    pLevel.playSound(null, pPos, LabSounds.KEYDOOR_OPEN.get(), SoundSource.BLOCKS, 0.5f, 1f);
+                    pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, DoorState.OPENED));
+                    pLevel.setBlockAndUpdate(pPos.below(), LabBlocks.DOOR_BOTTOM.get().withPropertiesOf(pState.setValue(STATE, DoorState.OPENED)));
+                    if (pLevel instanceof ServerLevel server) server.sendParticles(ParticleTypes.SMOKE,
+                            x + 0.5, y, z + 0.5, 20, 0.2, 0.4, 0.2, 0.02);
+                    keydoor.resetTick();
+                }
+                if (state == DoorState.OPENED && !keydoor.getAutoClose()) {
+                    pLevel.playSound(null, pPos, LabSounds.KEYDOOR_CLOSE.get(), SoundSource.BLOCKS, 0.5f, 1f);
+                    pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, DoorState.ERROR));
+                    pLevel.setBlockAndUpdate(pPos.below(), LabBlocks.DOOR_BOTTOM.get().withPropertiesOf(pState.setValue(STATE, DoorState.CLOSED)));
+                    if (pLevel instanceof ServerLevel server) server.sendParticles(ParticleTypes.SMOKE,
+                            x + 0.5, y, z + 0.5, 20, 0.2, 0.4, 0.2, 0.02);
+                    keydoor.resetTick();
                 }
             }
         }

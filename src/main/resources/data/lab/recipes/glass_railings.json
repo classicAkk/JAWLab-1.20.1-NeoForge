@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:glass_pane"
+    },
+    "W": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "pattern": [
+    "W#W",
+    "W#W"
+  ],
+  "result": {
+    "count": 6,
+    "item": "lab:glass_railings"
+  },
+  "show_notification": true
+}

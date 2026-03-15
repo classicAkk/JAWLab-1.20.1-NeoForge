@@ -143,6 +143,7 @@ public class KeycardInteractions {
         return "none";
     }
     public static int getColor(String string) {
+        if (string == null) return 0xFF2400;
         if (string.equals("none") || string.equals("false")) {
             return 0xFF2400;
         }

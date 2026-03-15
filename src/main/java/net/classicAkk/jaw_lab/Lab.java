@@ -2,9 +2,7 @@ package net.classicAkk.jaw_lab;
 import com.mojang.logging.LogUtils;
 import net.classicAkk.jaw_lab.Content.Blocks.LabBlockEntities;
 import net.classicAkk.jaw_lab.Content.Blocks.LabBlocks;
-import net.classicAkk.jaw_lab.Content.Blocks.LabBlocksTab;
 import net.classicAkk.jaw_lab.Content.Items.LabItems;
-import net.classicAkk.jaw_lab.Content.Items.LabItemsTab;
 import net.classicAkk.jaw_lab.Content.Sound.LabSounds;
 import net.classicAkk.jaw_lab.Screen.LabMenuTypes;
 import net.classicAkk.jaw_lab.Util.LabPackets;
@@ -28,8 +26,7 @@ public class Lab {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         LabBlockEntities.register(modEventBus);
-        LabItemsTab.register(modEventBus);
-        LabBlocksTab.register(modEventBus);
+        LabCreativeTab.register(modEventBus);
         LabBlocks.register(modEventBus);
         LabSounds.register(modEventBus);
         LabItems.register(modEventBus);

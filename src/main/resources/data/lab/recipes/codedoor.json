@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "T": {
+      "item": "minecraft:stone_button"
+    },
+    "W": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "pattern": [
+    "WW",
+    "WT",
+    "WW"
+  ],
+  "result": {
+    "count": 4,
+    "item": "lab:code_door"
+  },
+  "show_notification": true
+}

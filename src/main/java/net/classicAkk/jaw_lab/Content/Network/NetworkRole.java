@@ -12,7 +12,8 @@ public enum NetworkRole {
             NetworkPermission.CHANGE_CARD_LEVEL,
             NetworkPermission.CHANGE_ROLE,
             NetworkPermission.DELETE_NETWORK,
-            NetworkPermission.ADD_NETWORK
+            NetworkPermission.ADD_NETWORK,
+            NetworkPermission.CHANGE_DOORS
     )),
 
     ADMIN(Set.of(
@@ -21,7 +22,8 @@ public enum NetworkRole {
             NetworkPermission.CHANGE_LEVEL,
             NetworkPermission.CHANGE_CARD_LEVEL,
             NetworkPermission.CHANGE_ROLE,
-            NetworkPermission.ADD_NETWORK
+            NetworkPermission.ADD_NETWORK,
+            NetworkPermission.CHANGE_DOORS
     )),
 
     MODERATOR(Set.of(

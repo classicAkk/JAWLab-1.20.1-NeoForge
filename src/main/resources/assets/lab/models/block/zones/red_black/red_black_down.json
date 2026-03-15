@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "lab:block/zones/red_black/red_black_down",
+    "south": "lab:block/zones/red_black/red_black_down",
+    "west": "lab:block/zones/red_black/red_black_down",
+    "east": "lab:block/zones/red_black/red_black_down",
+    "up": "lab:block/armored_concrete/armored_concrete_b",
+    "down": "lab:block/armored_concrete/armored_concrete_b",
+    "particle": "lab:block/armored_concrete/armored_concrete_b"
+  }
+}

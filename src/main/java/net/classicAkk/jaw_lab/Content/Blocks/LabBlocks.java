@@ -1,14 +1,11 @@
 package net.classicAkk.jaw_lab.Content.Blocks;
 
 import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Doors.CodeDoor;
-import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Decorations.DirectionalBlock;
 import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Decorations.GlassRailings;
 import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Decorations.GlassRailingsCorner;
 import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Decorations.Grating;
 import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Doors.DoorBottom;
 import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Doors.KeyDoor;
-import net.classicAkk.jaw_lab.Content.Blocks.Blocks.ElectricPanel.*;
-import net.classicAkk.jaw_lab.Content.Blocks.Blocks.KeyCards.*;
 import net.classicAkk.jaw_lab.Content.Blocks.Blocks.ElevatorButtons.InsideElevatorButton;
 import net.classicAkk.jaw_lab.Content.Blocks.Blocks.ElevatorButtons.OutsideElevatorButton;
 import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Barrier.BarrierGate;
@@ -16,15 +13,7 @@ import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Barrier.BarrierGateConnector
 import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Barrier.BarrierGateOff;
 import net.classicAkk.jaw_lab.Content.Blocks.Blocks.KeycardProgrammator;
 import net.classicAkk.jaw_lab.Content.Blocks.Blocks.LEDLamp;
-import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Pickable.WireCuttersBlock;
 import net.classicAkk.jaw_lab.Lab;
-import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Pickable.CrowbarBlock;
-import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Pickable.DuctTapeBlock;
-import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Pickable.FuseBlock;
-import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Sheets.EmptySheetBlock;
-import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Sheets.SheetBlock;
-import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Stamps.GreenStamp;
-import net.classicAkk.jaw_lab.Content.Blocks.Blocks.Stamps.RedStamp;
 import net.classicAkk.jaw_lab.Content.Items.LabItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -65,36 +54,36 @@ public class LabBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
 
     //ZonesBlocks
-    public static final RegistryObject<Block> Y_ZONE_BLOCK_UP = registerBlock("y_zone_block_up",
+    public static final RegistryObject<Block> YELLOW_UP = registerBlock("yellow_up",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> Y_ZONE_BLOCK_DOWN = registerBlock("y_zone_block_down",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
-
-
-    public static final RegistryObject<Block> C_ZONE_BLOCK_UP = registerBlock("c_zone_block_up",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> C_ZONE_BLOCK_DOWN = registerBlock("c_zone_block_down",
+    public static final RegistryObject<Block> YELLOW_DOWN = registerBlock("yellow_down",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
 
 
-    public static final RegistryObject<Block> G_ZONE_BLOCK_UP = registerBlock("g_zone_block_up",
+    public static final RegistryObject<Block> CYAN_UP = registerBlock("cyan_up",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> G_ZONE_BLOCK_DOWN = registerBlock("g_zone_block_down",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
-
-    public static final RegistryObject<Block> REACTOR_ZONE_BLOCK_UP = registerBlock("reactor_zone_block_up",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> REACTOR_ZONE_BLOCK_DOWN = registerBlock("reactor_zone_block_down",
+    public static final RegistryObject<Block> CYAN_DOWN = registerBlock("cyan_down",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
 
-    public static final RegistryObject<Block> R_ZONE_BLOCK_UP = registerBlock("r_zone_block_up",
+
+    public static final RegistryObject<Block> GREEN_UP = registerBlock("green_up",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> R_ZONE_BLOCK_DOWN = registerBlock("r_zone_block_down",
+    public static final RegistryObject<Block> GREEN_DOWN = registerBlock("green_down",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
 
-    public static final RegistryObject<Block> O_ZONE_BLOCK_UP = registerBlock("o_zone_block_up",
+    public static final RegistryObject<Block> RED_BLACK_UP = registerBlock("red_black_down",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> O_ZONE_BLOCK_DOWN = registerBlock("o_zone_block_down",
+    public static final RegistryObject<Block> RED_BLACK_DOWN = registerBlock("red_black_up",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> RED_UP = registerBlock("red_up",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> RED_DOWN = registerBlock("red_down",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
+
+    public static final RegistryObject<Block> ORANGE_UP = registerBlock("orange_up",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> ORANGE_DOWN = registerBlock("orange_down",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
 
 
@@ -129,71 +118,34 @@ public class LabBlocks {
             () -> new Grating(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
                     .dynamicShape()));
+    /*
     public static final RegistryObject<Block> CABLE = registerBlock("cable",
             () -> new DirectionalBlock(BlockBehaviour.Properties.copy(Blocks.BLACK_WOOL).sound(SoundType.COPPER),
                     BlockSetType.IRON, 20, true));
 
+     */
+
 
     public static final RegistryObject<Block> ELEVATOR_INSIDE = registerBlock("elevator_inside",
             () -> new InsideElevatorButton(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.NETHERITE_BLOCK),
-                    BlockSetType.IRON, 200, true));
+                    BlockSetType.IRON, 20, true));
     public static final RegistryObject<Block> ELEVATOR_OUTSIDE = registerBlock("elevator_outside",
             () -> new OutsideElevatorButton(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.NETHERITE_BLOCK),
-                    BlockSetType.IRON, 200, true));
+                    BlockSetType.IRON, 20, true));
 
 
     //Electric
-    public static final RegistryObject<Block> ELECTRICAL_PANEL_FINE_CLOSED = registerBlock("electrical_panel_fine_closed",
+    /*
+    public static final RegistryObject<Block> ELECTRICAL_PANEL = registerBlock("electrical_panel_fine_closed",
             () -> new Grating(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
                     .dynamicShape()));
-    public static final RegistryObject<Block> ELECTRICAL_PANEL_FINE_OPENED = registerBlock("electrical_panel_fine_opened",
-            () -> new Grating(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> ELECTRICAL_PANEL_BROKEN_CLOSED = registerBlock("electrical_panel_broken_closed",
-            () -> new ElectricPanelBrokenClosed(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> ELECTRICAL_PANEL_BROKEN_OPENED = registerBlock("electrical_panel_broken_opened",
-            () -> new ElectricPanelBrokenOpened(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> ELECTRICAL_PANEL_BROKEN_FUSE0 = registerBlock("electrical_panel_broken_fuse0",
-            () -> new Grating(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> ELECTRICAL_PANEL_BROKEN_FUSE1 = registerBlock("electrical_panel_broken_fuse1",
-            () -> new Grating(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> ELECTRICAL_PANEL_BROKEN_FUSE2 = registerBlock("electrical_panel_broken_fuse2",
-            () -> new Grating(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-
-    public static final RegistryObject<Block> ELECTRICAL_PANEL_FIXED_CABLE = registerBlock("electrical_panel_fixed_cable",
-            () -> new ElectricPanelFixedCable(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> ELECTRICAL_PANEL_FIXED_FUSE1 = registerBlock("electrical_panel_fixed_fuse1",
-            () -> new ElectricPanelFixedFuse1(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> ELECTRICAL_PANEL_FIXED_FUSE2 = registerBlock("electrical_panel_fixed_fuse2",
-            () -> new ElectricPanelFixedFuse2(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> ELECTRICAL_PANEL_FIXED_CLOSED = registerBlock("electrical_panel_fixed_fuse_closed",
-            () -> new ElectricPanelFixedClosed(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
+     */
 
 
+    //Useful
     public static final RegistryObject<Block> LED_LAMP = registerBlock("led_lamp",
             () -> new LEDLamp(BlockBehaviour.Properties.copy(Blocks.TORCH).sound(SoundType.NETHERITE_BLOCK)));
-
-
 
     //Barriers
     public static final RegistryObject<Block> BARRIER_GATE = registerBlock("barrier_gate",
@@ -213,6 +165,7 @@ public class LabBlocks {
                     .strength(-1)));
 
     //pickle items
+    /*
     public static final RegistryObject<Block> WIRE_CUTTERS_BLOCK = registerBlock("wire_cutters_block",
             () -> new WireCuttersBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
@@ -237,8 +190,9 @@ public class LabBlocks {
             () -> new RedStamp(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
                     .dynamicShape()));
+     */
 
-
+/*
     public static final RegistryObject<Block> KEYCARD1_BLOCK = registerBlock("keycard1_block",
             () -> new KeyCardBlock1(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
@@ -259,9 +213,10 @@ public class LabBlocks {
             () -> new KeyCardBlock5(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
                     .dynamicShape()));
+ */
 
-    //sheet
-
+    //Sheet
+    /*
     public static final RegistryObject<Block> SHEET = registerBlock("sheet",
             () -> new EmptySheetBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL).sound(SoundType.WOOL)
                     .noOcclusion()
@@ -274,6 +229,7 @@ public class LabBlocks {
             () -> new SheetBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL).sound(SoundType.WOOL)
                     .noOcclusion()
                     .dynamicShape()));
+     */
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

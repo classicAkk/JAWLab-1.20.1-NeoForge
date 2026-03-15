@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lab:block/zones/red_black/red_black_up"
+    }
+  }
+}

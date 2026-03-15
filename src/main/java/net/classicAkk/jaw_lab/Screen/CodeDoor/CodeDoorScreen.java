@@ -1,12 +1,11 @@
 package net.classicAkk.jaw_lab.Screen.CodeDoor;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.CodeDoors.CodeDoorBE;
+import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Doors.CodeDoorBE;
 import net.classicAkk.jaw_lab.Lab;
 import net.classicAkk.jaw_lab.Screen.Elements.GuiButton;
 import net.classicAkk.jaw_lab.Screen.ProcessingPackets.ProcessingPacket;
 import net.classicAkk.jaw_lab.Util.LabPackets;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -91,7 +90,7 @@ public class CodeDoorScreen extends AbstractContainerScreen<CodeDoorMenu> {
 
     private void renderElements() {
         this.addRenderableWidget( //1
-                new GuiButton(TEXTURE, leftPos+offsetX + 14, topPos+22 + 26, 14, 14, 18, 208, 224, Component.empty(),
+                new GuiButton(TEXTURE, leftPos+offsetX + 14, topPos+offsetY + 26, 14, 14, 18, 208, 224, Component.empty(),
                         button -> {
                     if (isValidLength(text, 9)) text+="1";
                         }));

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "Y": {
+      "item": "minecraft:comparator"
+    },
+    "U": {
+      "item": "minecraft:redstone_torch"
+    },
+    "W": {
+      "tag": "forge:ingots/iron"
+    },
+    "S": {
+      "item": "minecraft:redstone_lamp"
+    }
+  },
+  "pattern": [
+    "UYU",
+    "WSW"
+  ],
+  "result": {
+    "count": 1,
+    "item": "lab:door_programmator"
+  },
+  "show_notification": true
+}

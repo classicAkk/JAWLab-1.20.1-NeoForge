@@ -1,11 +1,14 @@
 package net.classicAkk.jaw_lab.Screen.ProcessingPackets;
 
-import net.classicAkk.jaw_lab.Content.Interactions.CodeDoorInteractions;
+import net.classicAkk.jaw_lab.Content.Interactions.DoorInteractions;
 import net.classicAkk.jaw_lab.Content.Interactions.KeycardInteractions;
 import net.classicAkk.jaw_lab.Content.Interactions.NetworkInteractions;
 import net.classicAkk.jaw_lab.Content.Network.NetworkRole;
 import net.classicAkk.jaw_lab.Content.Network.UUIDFetcher;
 import net.classicAkk.jaw_lab.Screen.CodeDoor.CodeDoorMenu;
+import net.classicAkk.jaw_lab.Screen.DoorProgrammator.CodeDoor.DoorProgrammatorCodeMenu;
+import net.classicAkk.jaw_lab.Screen.DoorProgrammator.KeyDoor.DoorProgrammatorKeyMenu;
+import net.classicAkk.jaw_lab.Screen.DoorProgrammator.KeyDoor.DoorProgrammatorKeyScreen;
 import net.classicAkk.jaw_lab.Screen.KCPCopy.KeycardProgrammatorCopyMenu;
 import net.classicAkk.jaw_lab.Screen.KCPMain.KeycardProgrammatorMainMenu;
 import net.classicAkk.jaw_lab.Screen.KCPNetwork.KeycardProgrammatorNetworkMenu;
@@ -26,6 +29,7 @@ public class ProcessingPacket {
     private static NetworkRole role;
     private static String type;
     private static String parameter;
+    private static String parameter2;
     private static String networkName;
     private static Level level;
     private static ServerLevel serverLevel;
@@ -85,6 +89,14 @@ public class ProcessingPacket {
         ProcessingPacket.parameter = parameter;
         ProcessingPacket.player = player;
     }
+    public ProcessingPacket(Level level, BlockEntity blockEntity, String type, String parameter, String parameter2, Player player) {
+        ProcessingPacket.level = level;
+        ProcessingPacket.blockEntity = blockEntity;
+        ProcessingPacket.type = type;
+        ProcessingPacket.parameter = parameter;
+        ProcessingPacket.parameter2 = parameter2;
+        ProcessingPacket.player = player;
+    }
 
     public void encode(FriendlyByteBuf buf) {
         buf.writeInt(containerId);
@@ -109,7 +121,7 @@ public class ProcessingPacket {
                     case("resetLevel"): {KeycardInteractions.resetLevel(MainMenu, 36); break;}
                     case("addNetwork"): {KeycardInteractions.addNetwork(MainMenu, level, 36, parameter, player); break;}
                     case("removeNetwork"): {KeycardInteractions.removeNetwork(MainMenu, 36); break;}
-                    default: {System.out.print("Jaw Lab: net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
+                    default: {System.out.print("Jaw Lab: cannot find case in net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
                 }
             }
             if (serverPlayer.containerMenu instanceof KeycardProgrammatorNetworkMenu NetworkMenu) {
@@ -123,21 +135,38 @@ public class ProcessingPacket {
                     case("increaseUserLevel"): {NetworkInteractions.increaseUserLevel(serverLevel, networkName, player, parameter); break;}
                     case("decreaseUserLevel"): {NetworkInteractions.decreaseUserLevel(serverLevel, networkName, player, parameter); break;}
                     case("setRole"): {NetworkInteractions.setRole(serverLevel, networkName, player, parameter, role); break;}
-                    default: {System.out.print("Jaw Lab: net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
+                    default: {System.out.print("Jaw Lab: cannot find case in net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
                 }
             }
             if (serverPlayer.containerMenu instanceof KeycardProgrammatorCopyMenu CopyMenu) {
                 switch(type) {
                     case("copyCard"): {KeycardInteractions.copyCard(CopyMenu, 36); break;}
-                    default: {System.out.print("Jaw Lab: net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
+                    default: {System.out.print("Jaw Lab: cannot find case in net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
                 }
             }
             if (serverPlayer.containerMenu instanceof CodeDoorMenu CodeDoorMenu) {
                 switch(type) {
-                    case("openDoor"): {CodeDoorInteractions.setDoor(blockEntity, level, player);break;}
-                    case("setCode"): {CodeDoorInteractions.setCode(blockEntity, parameter, player);break;}
-                    case("error"): {CodeDoorInteractions.error(blockEntity, level, player);break;}
-                    default: {System.out.print("Jaw Lab: net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
+                    case("openDoor"): {DoorInteractions.setDoor(blockEntity, level, player);break;}
+                    case("setCode"): {DoorInteractions.setCode(blockEntity, level, parameter, player);break;}
+                    case("error"): {DoorInteractions.error(blockEntity, level, player);break;}
+                    default: {System.out.print("Jaw Lab: cannot find case in net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
+                }
+            }
+            if (serverPlayer.containerMenu instanceof DoorProgrammatorCodeMenu codeMenu) {
+                switch(type) {
+                    case("switchAutoClose"): {DoorInteractions.switchAutoClose(blockEntity, level);break;}
+                    case("resetDoor"): {DoorInteractions.resetDoor(blockEntity, level, parameter, player);break;}
+                    default: {System.out.print("Jaw Lab: cannot find case in net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
+                }
+            }
+            if (serverPlayer.containerMenu instanceof DoorProgrammatorKeyMenu keyMenu) {
+                switch(type) {
+                    case("switchAutoClose"): {DoorInteractions.switchAutoClose(blockEntity, level);break;}
+                    case("resetDoor"): {DoorInteractions.resetDoor(blockEntity, level, parameter, player);break;}
+                    case("increment"): {DoorInteractions.incrementLevel(blockEntity, level, parameter, player);break;}
+                    case("decrement"): {DoorInteractions.decrementLevel(blockEntity, level, parameter, player);break;}
+                    case("setNetwork"): {DoorInteractions.setNetwork(blockEntity, level, parameter, parameter2, player);break;}
+                    default: {System.out.print("Jaw Lab: cannot find case in net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
                 }
             }
         });

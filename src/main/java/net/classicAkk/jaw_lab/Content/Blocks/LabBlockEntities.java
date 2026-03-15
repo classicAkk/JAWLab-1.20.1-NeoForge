@@ -2,8 +2,8 @@ package net.classicAkk.jaw_lab.Content.Blocks;
 
 import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Barriers.BarrierGateBE;
 import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Barriers.BarrierGateOffBE;
-import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.CodeDoors.CodeDoorBE;
-import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.KeyDoors.KeyDoorBE;
+import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Doors.CodeDoorBE;
+import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Doors.KeyDoorBE;
 import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.KeycardProgrammatorBE;
 import net.classicAkk.jaw_lab.Lab;
 import net.minecraft.world.level.block.entity.BlockEntityType;

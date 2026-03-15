@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:comparator"
+    },
+    "W": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "pattern": [
+    "WW",
+    "W#",
+    "WW"
+  ],
+  "result": {
+    "count": 4,
+    "item": "lab:key_door"
+  },
+  "show_notification": true
+}

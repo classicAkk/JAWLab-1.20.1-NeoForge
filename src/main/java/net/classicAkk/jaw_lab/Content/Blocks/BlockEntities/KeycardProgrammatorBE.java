@@ -92,7 +92,7 @@ public class KeycardProgrammatorBE extends BlockEntity implements MenuProvider {
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("KCP Keycard Programmator");
+        return Component.translatable("block.lab.ui.kcp");
     }
 
     @Nullable

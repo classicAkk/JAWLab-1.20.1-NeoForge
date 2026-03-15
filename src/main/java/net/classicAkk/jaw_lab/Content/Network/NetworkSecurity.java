@@ -10,4 +10,5 @@ public class NetworkSecurity {
     public static boolean canChangeLevel(NetworkUser actor) {return actor.getRole().hasPermission(NetworkPermission.CHANGE_LEVEL);}
     public static boolean canChangeCardLevel(NetworkUser actor) {return actor.getRole().hasPermission(NetworkPermission.CHANGE_CARD_LEVEL);}
     public static boolean canChangeNetwork(NetworkUser actor) {return actor.getRole().hasPermission(NetworkPermission.ADD_NETWORK);}
+    public static boolean canChangeDoorSettings(NetworkUser actor) {return actor.getRole().hasPermission(NetworkPermission.CHANGE_DOORS);}
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/iron"
+    },
+    "W": {
+      "tag": "lab:concrete"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "W#W",
+    "WWW"
+  ],
+  "result": {
+    "count": 8,
+    "item": "lab:armored_concrete"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lab:glass_railings"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "lab:glass_railings_corner"
+  },
+  "show_notification": true
+}

@@ -1,14 +1,23 @@
 package net.classicAkk.jaw_lab.Content.Blocks.Blocks.Doors;
 
+import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Doors.CodeDoorBE;
+import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Doors.KeyDoorBE;
 import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Util.DoorState;
 import net.classicAkk.jaw_lab.Content.Blocks.BlockEntities.Util.TickableBE;
 import net.classicAkk.jaw_lab.Content.Blocks.LabBlockEntities;
 import net.classicAkk.jaw_lab.Content.Blocks.LabBlocks;
+import net.classicAkk.jaw_lab.Content.Items.LabItems;
+import net.classicAkk.jaw_lab.Content.Sound.LabSounds;
 import net.classicAkk.jaw_lab.Screen.CodeDoor.CodeDoorMenu;
+import net.classicAkk.jaw_lab.Screen.DoorProgrammator.CodeDoor.DoorProgrammatorCodeMenu;
+import net.classicAkk.jaw_lab.Screen.DoorProgrammator.KeyDoor.DoorProgrammatorKeyMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
@@ -130,10 +139,6 @@ public class CodeDoor extends Block implements EntityBlock {
         }
     }
 
-    public static EnumProperty<DoorState> getDoorState() {
-        return STATE;
-    }
-
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
@@ -166,11 +171,34 @@ public class CodeDoor extends Block implements EntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
-            if (pState.getValue(CodeDoor.STATE) != DoorState.CLOSED) return InteractionResult.FAIL;
-            NetworkHooks.openScreen((ServerPlayer) pPlayer,
-                    new SimpleMenuProvider((id, inv, p) ->
-                            new CodeDoorMenu(id, inv,  pLevel.getBlockEntity(pPos), ContainerLevelAccess.create(pLevel, pPos)),
-                            Component.literal("CodeDoor")), pPos);
+            if (pLevel.getBlockEntity(pPos) instanceof CodeDoorBE codeDoor) {
+                if (pState.getValue(CodeDoor.STATE) == DoorState.CLOSED) {
+                    if (pPlayer.getItemInHand(pHand).getItem().equals(LabItems.DOOR_PROGRAMMATOR.get()) && !pPlayer.isShiftKeyDown()) {
+                        NetworkHooks.openScreen((ServerPlayer) pPlayer,
+                                new SimpleMenuProvider((id, inv, p) ->
+                                        new DoorProgrammatorCodeMenu(id, inv, pLevel.getBlockEntity(pPos), ContainerLevelAccess.create(pLevel, pPos)),
+                                        Component.literal("CodeDoor")), pPos);
+                        return InteractionResult.SUCCESS;
+                    }
+                    if (pPlayer.getItemInHand(pHand).getItem().equals(LabItems.DOOR_PROGRAMMATOR.get()) && pPlayer.isShiftKeyDown()) {
+                        //passfornow ; copy values
+                        return InteractionResult.SUCCESS;
+                    }
+                    NetworkHooks.openScreen((ServerPlayer) pPlayer,
+                            new SimpleMenuProvider((id, inv, p) ->
+                                    new CodeDoorMenu(id, inv, pLevel.getBlockEntity(pPos), ContainerLevelAccess.create(pLevel, pPos)),
+                                    Component.literal("CodeDoor")), pPos);
+                }
+                if (pState.getValue(CodeDoor.STATE) == DoorState.OPENED && !codeDoor.getAutoClose()) {
+                    int x = pPos.getX(); int y = pPos.getY(); int z = pPos.getZ();
+                    pLevel.playSound(null, pPos, LabSounds.KEYDOOR_CLOSE.get(), SoundSource.BLOCKS, 0.5f, 1f);
+                    pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, DoorState.ERROR));
+                    pLevel.setBlockAndUpdate(pPos.below(), LabBlocks.DOOR_BOTTOM.get().withPropertiesOf(pState.setValue(STATE, DoorState.CLOSED)));
+                    if (pLevel instanceof ServerLevel server) server.sendParticles(ParticleTypes.SMOKE,
+                            x + 0.5, y, z + 0.5, 20, 0.2, 0.4, 0.2, 0.02);
+                    codeDoor.resetTick();
+                }
+            }
         }
         return InteractionResult.SUCCESS;
     }

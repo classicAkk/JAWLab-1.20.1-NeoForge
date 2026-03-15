@@ -4,7 +4,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "lab:block/keycard_programmator",
-		"particle": "lab:block/keycard_programmator"
+        "particle": "block/netherite_block"
 	},
 	"elements": [
 		{
