@@ -156,6 +156,7 @@ public class ProcessingPacket {
                 switch(type) {
                     case("switchAutoClose"): {DoorInteractions.switchAutoClose(blockEntity, level);break;}
                     case("resetDoor"): {DoorInteractions.resetDoor(blockEntity, level, parameter, player);break;}
+                    case("setNetwork"): {DoorInteractions.setNetwork(blockEntity, level, parameter, parameter2, player);break;}
                     default: {System.out.print("Jaw Lab: cannot find case in net/classic_akk/jaw_lab/Screen/ProcessingPackets\n"); break;}
                 }
             }

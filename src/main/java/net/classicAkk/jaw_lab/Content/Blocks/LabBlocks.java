@@ -87,8 +87,6 @@ public class LabBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.STONE)));
 
 
-
-
     //KeyDoors
     public static final RegistryObject<Block> DOOR_BOTTOM = registerBlock("door_bottom",
             () -> new DoorBottom(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
@@ -118,30 +116,14 @@ public class LabBlocks {
             () -> new Grating(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
                     .noOcclusion()
                     .dynamicShape()));
-    /*
-    public static final RegistryObject<Block> CABLE = registerBlock("cable",
-            () -> new DirectionalBlock(BlockBehaviour.Properties.copy(Blocks.BLACK_WOOL).sound(SoundType.COPPER),
-                    BlockSetType.IRON, 20, true));
 
-     */
-
-
+    //Buttons
     public static final RegistryObject<Block> ELEVATOR_INSIDE = registerBlock("elevator_inside",
             () -> new InsideElevatorButton(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.NETHERITE_BLOCK),
                     BlockSetType.IRON, 20, true));
     public static final RegistryObject<Block> ELEVATOR_OUTSIDE = registerBlock("elevator_outside",
             () -> new OutsideElevatorButton(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.NETHERITE_BLOCK),
                     BlockSetType.IRON, 20, true));
-
-
-    //Electric
-    /*
-    public static final RegistryObject<Block> ELECTRICAL_PANEL = registerBlock("electrical_panel_fine_closed",
-            () -> new Grating(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-     */
-
 
     //Useful
     public static final RegistryObject<Block> LED_LAMP = registerBlock("led_lamp",
@@ -163,74 +145,6 @@ public class LabBlocks {
                     .noOcclusion()
                     .dynamicShape()
                     .strength(-1)));
-
-    //pickle items
-    /*
-    public static final RegistryObject<Block> WIRE_CUTTERS_BLOCK = registerBlock("wire_cutters_block",
-            () -> new WireCuttersBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> CROWBAR_BLOCK = registerBlock("crowbar_block",
-            () -> new CrowbarBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> DUCT_TAPE_BLOCK = registerBlock("duct_tape_block",
-            () -> new DuctTapeBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> FUSE_BLOCK = registerBlock("fuse_block",
-            () -> new FuseBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> GREEN_STAMP_BLOCK = registerBlock("green_stamp_block",
-            () -> new GreenStamp(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> RED_STAMP_BLOCK = registerBlock("red_stamp_block",
-            () -> new RedStamp(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-     */
-
-/*
-    public static final RegistryObject<Block> KEYCARD1_BLOCK = registerBlock("keycard1_block",
-            () -> new KeyCardBlock1(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> KEYCARD2_BLOCK = registerBlock("keycard2_block",
-            () -> new KeyCardBlock2(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> KEYCARD3_BLOCK = registerBlock("keycard3_block",
-            () -> new KeyCardBlock3(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> KEYCARD4_BLOCK = registerBlock("keycard4_block",
-            () -> new KeyCardBlock4(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> KEYCARD5_BLOCK = registerBlock("keycard5_block",
-            () -> new KeyCardBlock5(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.METAL)
-                    .noOcclusion()
-                    .dynamicShape()));
- */
-
-    //Sheet
-    /*
-    public static final RegistryObject<Block> SHEET = registerBlock("sheet",
-            () -> new EmptySheetBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL).sound(SoundType.WOOL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> SHEET_RED = registerBlock("sheet_red",
-            () -> new SheetBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL).sound(SoundType.WOOL)
-                    .noOcclusion()
-                    .dynamicShape()));
-    public static final RegistryObject<Block> SHEET_GREEN = registerBlock("sheet_green",
-            () -> new SheetBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL).sound(SoundType.WOOL)
-                    .noOcclusion()
-                    .dynamicShape()));
-     */
-
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

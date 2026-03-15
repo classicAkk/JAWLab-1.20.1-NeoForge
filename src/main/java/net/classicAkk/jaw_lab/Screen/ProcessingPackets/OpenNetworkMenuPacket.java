@@ -47,7 +47,7 @@ public class OpenNetworkMenuPacket {
 
                 @Override
                 public Component getDisplayName() {
-                    return Component.literal("KCP Network");
+                    return Component.translatable("block.lab.ui.kcp_network");
                 }
 
                 @Override

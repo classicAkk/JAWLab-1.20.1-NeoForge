@@ -60,7 +60,7 @@ public class DoorProgrammatorKeyScreen extends AbstractContainerScreen<DoorProgr
         int y = (height - 90) / 2;
 
         renderTextElements(guiGraphics);
-        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth-20, imageHeight);
+        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth-40, imageHeight);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class DoorProgrammatorKeyScreen extends AbstractContainerScreen<DoorProgr
     private void renderTextElements(GuiGraphics guiGraphics){
         String network = DoorInteractions.getNetwork(blockEntity);
         int cLevel = DoorInteractions.getLevel(blockEntity);
-        //System.out.print(network + " " + cLevel +"\n");
+
 
         if (network != null) guiGraphics.drawString(this.font, network, leftPos+offsetX+12, topPos+offsetY+56, 0xFFA500);
         guiGraphics.drawString(this.font, String.valueOf(cLevel), leftPos+offsetX+28, topPos+offsetY+32, KeycardInteractions.getColorNumbers(cLevel));
@@ -105,13 +105,17 @@ public class DoorProgrammatorKeyScreen extends AbstractContainerScreen<DoorProgr
         this.addRenderableWidget( //Set Network (mode)
                 new GuiButton(TEXTURE, leftPos+offsetX+86, topPos+offsetY+70, 11, 11, 66, 208, 224, Component.empty(),
                         button -> {
-                            if (net != null && !field.getValue().isEmpty()) {
+                            if ((net != null || !net.isEmpty()) && !field.getValue().isEmpty() ) {
                                 LabPackets.INSTANCE.sendToServer(new ProcessingPacket(level, blockEntity, "setNetwork", field.getValue(), net, player));
-                                if (DoorInteractions.canSetNetwork(blockEntity, level, field.getValue(), net, player)) net = field.getValue();
-                            };
-                            if (net == null && !field.getValue().isEmpty()) {
+                                if (DoorInteractions.canSetNetwork(blockEntity, level, field.getValue(), net, player)) {
+                                    net = field.getValue();
+                                }
+                            }
+                            if ((net == null || net.isEmpty()) && !field.getValue().isEmpty()) {
                                 LabPackets.INSTANCE.sendToServer(new ProcessingPacket(level, blockEntity, "setNetwork", field.getValue(), "", player));
-                                if (DoorInteractions.canSetNetwork(blockEntity, level, field.getValue(), "", player)) net = field.getValue();
+                                if (DoorInteractions.canSetNetwork(blockEntity, level, field.getValue(), "", player)) {
+                                    net = field.getValue();
+                                }
                             }
                         }));
 

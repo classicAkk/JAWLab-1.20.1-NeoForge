@@ -47,7 +47,7 @@ public class OpenMainMenuPacket {
 
                 @Override
                 public Component getDisplayName() {
-                    return Component.literal("KCP Keycard Programmator");
+                    return Component.translatable("block.lab.ui.kcp");
                 }
 
                 @Override

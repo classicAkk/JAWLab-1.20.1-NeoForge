@@ -63,7 +63,7 @@ public class LabPackets {
     }
 
 
-    /**
+    /** A small tip
     public static <MSG> void sendToServer(MSG message) {
         INSTANCE.sendToServer(message);
     }
