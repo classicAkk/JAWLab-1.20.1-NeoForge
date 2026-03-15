@@ -1,0 +1,30 @@
+{
+  "values": [
+    "lab:armored_concrete",
+    "lab:armored_concrete_b",
+    "lab:armored_concrete_b_painted",
+    "lab:armored_concrete_g",
+    "lab:armored_concrete_g_painted",
+    "lab:barrier_gate_off",
+    "lab:code_door",
+    "lab:key_door",
+    "lab:cyan_down",
+    "lab:cyan_up",
+    "lab:elevator_inside",
+    "lab:elevator_outside",
+    "lab:glass_railings",
+    "lab:glass_railings_corner",
+    "lab:green_down",
+    "lab:green_up",
+    "lab:keycard_programmator",
+    "lab:led_lamp",
+    "lab:orange_down",
+    "lab:orange_up",
+    "lab:red_black_down",
+    "lab:red_black_up",
+    "lab:red_down",
+    "lab:red_up",
+    "lab:yellow_down",
+    "lab:yellow_up"
+  ]
+}
