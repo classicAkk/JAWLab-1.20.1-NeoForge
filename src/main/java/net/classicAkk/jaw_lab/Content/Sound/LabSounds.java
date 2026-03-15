@@ -17,14 +17,7 @@ public class LabSounds {
     public static final RegistryObject<SoundEvent> KEYDOOR_CLOSE = registerSoundEvents("door_close");
     public static final RegistryObject<SoundEvent> KEYDOOR_ERROR = registerSoundEvents("door_error");
 
-    public static final RegistryObject<SoundEvent> ELECTRIC_OPEN = registerSoundEvents("electric_open");
-    public static final RegistryObject<SoundEvent> ELECTRIC_DUCT_TAPE = registerSoundEvents("electric_duct_tape");
-    public static final RegistryObject<SoundEvent> ELECTRIC_FUSE = registerSoundEvents("electric_fuse");
-    public static final RegistryObject<SoundEvent> ELECTRIC_FUSE1 = registerSoundEvents("electric_fuse1");
-
-    public static final RegistryObject<SoundEvent> STAMP = registerSoundEvents("stamp");
     public static final RegistryObject<SoundEvent> ITEM_PICKUP = registerSoundEvents("item_pickup");
-    public static final RegistryObject<SoundEvent> ITEM_CROWBAR_PICKUP = registerSoundEvents("item_crowbar_pickup");
 
 
 

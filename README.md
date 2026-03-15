@@ -10,7 +10,7 @@
 <p>Welcome to JAW Lab, a mod offering a variety of useful laboratory blocks: code doors, key doors and keycard with network connections.</p>
 <p>Also, mod adds many decoration blocks and some interactable items.</p>
 <p>&nbsp;</p>
-<p align="center"><a href="https://github.com/classicAkk/JAWLab-1.20.1-NeoForge/issues"><img src="https://i.imgur.com/qPmjSXy.png" width="160" /></a> <a href="https://discord.gg/HkwSrBhKU3"><img src="https://i.imgur.com/uf6V9ZX.png" width="160" /></a> <a href="https://github.com/Creators-of-Create/Create/wiki/Supporting-the-Project"><img src="https://i.imgur.com/fHQ45KR.png" width="227" /></a></p>
+<p align="center"><a href="https://github.com/classicAkk/JAWLab-1.20.1-NeoForge/issues"><img src="https://i.imgur.com/qPmjSXy.png" width="160" /></a> <a href="https://discord.gg/HkwSrBhKU3"><img src="https://i.imgur.com/uf6V9ZX.png" width="160" /></a> <</p>
 
 <h1></h1>
 <h4 align="center">Find out more about JAW Mods on my <a href="https://www.curseforge.com/members/classic_akk_/projects">Curseforge</a> or <a href="https://modrinth.com/user/classic_akk">Modrinth</a> Page</h4>

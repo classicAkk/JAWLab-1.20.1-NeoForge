@@ -182,6 +182,7 @@ public class KeyDoor extends Block implements EntityBlock {
                 int cLevel = tag.getInt("cLevel");
                 String cNetwork = tag.getString("cNetwork");
                 int x = pPos.getX(); int y = pPos.getY(); int z = pPos.getZ();
+                if (state == DoorState.ERROR) return InteractionResult.FAIL;
 
                 //System.out.print(keydoor.getNetwork() + " " + cNetwork + " - " + keydoor.getCLevel() + " " + cLevel + "\n");
                 if ((keydoor.getCLevel() > cLevel || (!cNetwork.equals(keydoor.getNetwork()) && cNetwork.equals("null")) || stack.isEmpty())
@@ -201,7 +202,7 @@ public class KeyDoor extends Block implements EntityBlock {
                     NetworkHooks.openScreen((ServerPlayer) pPlayer,
                             new SimpleMenuProvider((id, inv, p) ->
                                     new DoorProgrammatorKeyMenu(id, inv,  pLevel.getBlockEntity(pPos), ContainerLevelAccess.create(pLevel, pPos)),
-                                    Component.literal("CodeDoor")), pPos);
+                                    Component.translatable("block.lab.key_door")), pPos);
                     return InteractionResult.SUCCESS;
                 }
                 if (state == DoorState.CLOSED) {

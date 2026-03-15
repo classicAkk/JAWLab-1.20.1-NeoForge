@@ -94,6 +94,9 @@ public class DoorInteractions {
         if (pLevel.getBlockEntity(pos) instanceof KeyDoorBE keyDoorBE) {
             if (data.isValidNetwork(networkName)) keyDoorBE.setNetwork(data.getNetwork(networkName));
         }
+        if (pLevel.getBlockEntity(pos) instanceof CodeDoorBE codeDoorBE) {
+            if (data.isValidNetwork(networkName)) codeDoorBE.setNetwork(data.getNetwork(networkName));
+        }
     }
     public static boolean canSetNetwork(BlockEntity pBlockEntity, Level pLevel, String networkName, String currentNetworkName, Player pPlayer) {
         NetworkWorldData data = NetworkWorldData.get((ServerLevel) pLevel);
@@ -103,11 +106,7 @@ public class DoorInteractions {
             NetworkRole role = data.getUserRole(currentNetworkName, pPlayer.getUUID());
             if (role != NetworkRole.FOUNDER && role != NetworkRole.ADMIN) return false;
         }
-        BlockPos pos = pBlockEntity.getBlockPos();
-        if (pLevel.getBlockEntity(pos) instanceof KeyDoorBE keyDoorBE) {
-            return data.isValidNetwork(networkName);
-        }
-        return false;
+        return data.isValidNetwork(networkName);
     }
 
     public static void incrementLevel(BlockEntity pBlockEntity, Level pLevel, String networkName, Player pPlayer) {

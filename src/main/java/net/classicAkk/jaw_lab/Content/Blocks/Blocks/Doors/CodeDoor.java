@@ -172,12 +172,15 @@ public class CodeDoor extends Block implements EntityBlock {
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             if (pLevel.getBlockEntity(pPos) instanceof CodeDoorBE codeDoor) {
-                if (pState.getValue(CodeDoor.STATE) == DoorState.CLOSED) {
+                DoorState state = pState.getValue(CodeDoor.STATE);
+
+                if (state == DoorState.ERROR) return InteractionResult.FAIL;
+                if (state == DoorState.CLOSED) {
                     if (pPlayer.getItemInHand(pHand).getItem().equals(LabItems.DOOR_PROGRAMMATOR.get()) && !pPlayer.isShiftKeyDown()) {
                         NetworkHooks.openScreen((ServerPlayer) pPlayer,
                                 new SimpleMenuProvider((id, inv, p) ->
                                         new DoorProgrammatorCodeMenu(id, inv, pLevel.getBlockEntity(pPos), ContainerLevelAccess.create(pLevel, pPos)),
-                                        Component.literal("CodeDoor")), pPos);
+                                        Component.translatable("block.lab.code_door")), pPos);
                         return InteractionResult.SUCCESS;
                     }
                     if (pPlayer.getItemInHand(pHand).getItem().equals(LabItems.DOOR_PROGRAMMATOR.get()) && pPlayer.isShiftKeyDown()) {
@@ -187,9 +190,9 @@ public class CodeDoor extends Block implements EntityBlock {
                     NetworkHooks.openScreen((ServerPlayer) pPlayer,
                             new SimpleMenuProvider((id, inv, p) ->
                                     new CodeDoorMenu(id, inv, pLevel.getBlockEntity(pPos), ContainerLevelAccess.create(pLevel, pPos)),
-                                    Component.literal("CodeDoor")), pPos);
+                                    Component.translatable("block.lab.code_door")), pPos);
                 }
-                if (pState.getValue(CodeDoor.STATE) == DoorState.OPENED && !codeDoor.getAutoClose()) {
+                if (state == DoorState.OPENED && !codeDoor.getAutoClose()) {
                     int x = pPos.getX(); int y = pPos.getY(); int z = pPos.getZ();
                     pLevel.playSound(null, pPos, LabSounds.KEYDOOR_CLOSE.get(), SoundSource.BLOCKS, 0.5f, 1f);
                     pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, DoorState.ERROR));

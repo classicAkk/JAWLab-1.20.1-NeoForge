@@ -47,7 +47,7 @@ public class OpenCopyMenuPacket {
 
                 @Override
                 public Component getDisplayName() {
-                    return Component.literal("KCP Copy");
+                    return Component.translatable("block.lab.ui.kcp_copy");
                 }
 
                 @Override
